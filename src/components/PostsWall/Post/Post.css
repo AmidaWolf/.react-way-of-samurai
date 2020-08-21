@@ -1,0 +1,13 @@
+.post {
+    margin: 5px 10px;
+    padding: 5px;
+
+    display: flex;
+
+    border: 3px solid white ;
+}
+
+.post__text {
+    margin-left: 10px;
+
+}

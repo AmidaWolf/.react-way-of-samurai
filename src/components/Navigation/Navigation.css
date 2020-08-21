@@ -1,0 +1,15 @@
+.nav {
+    grid-area: navigation;
+
+    background-color: gray;
+}
+
+.menu-list {
+    list-style: none;
+}
+
+.menu-list__item a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+}
