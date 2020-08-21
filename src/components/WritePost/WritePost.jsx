@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './WritePost.css';
+import style from './WritePost.module.css';
 
 const WritePost = () => {
     return(
-        <div className={'posts__writing'}>
+        <div className={style.writing}>
             <textarea name="write-post" id="write-post" rows="2" placeholder="your news..."></textarea>
             <button>Send</button>
         </div>

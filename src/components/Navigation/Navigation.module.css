@@ -4,11 +4,11 @@
     background-color: gray;
 }
 
-.menu-list {
+.menu {
     list-style: none;
 }
 
-.menu-list__item a {
+.item a {
     text-decoration: none;
     text-transform: uppercase;
     color: black;

@@ -7,7 +7,11 @@
     border: 3px solid white ;
 }
 
-.post__text {
-    margin-left: 10px;
+.avatar {
+    height: 50px;
+    width: 50px;
+}
 
+.text {
+    margin-left: 10px;
 }

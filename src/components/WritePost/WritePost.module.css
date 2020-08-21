@@ -1,14 +1,14 @@
-.posts__writing {
+.writing {
     display: flex;
     flex-direction: column;
 }
 
-.posts__writing textarea {
+.writing textarea {
     margin: 0 10px;
     padding: 3px;
 }
 
-.posts__writing button {
+.writing button {
     width: 120px;
     height: 30px;
 

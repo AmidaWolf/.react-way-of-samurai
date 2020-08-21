@@ -1,13 +1,13 @@
 import React from 'react';
 
-import './Posts.css';
+import style from './Posts.module.css';
 import WritePost from "../WritePost/WritePost";
 import PostsWall from "../PostsWall/PostsWall";
 
 const Posts = () => {
     return(
-        <div className={'posts'}>
-            <h3 className={'posts__title'}>My posts</h3>
+        <div className={style.posts}>
+            <h3 className={style.title}>My posts</h3>
             <WritePost />
             <PostsWall />
         </div>

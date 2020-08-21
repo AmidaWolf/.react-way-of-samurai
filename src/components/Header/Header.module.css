@@ -7,12 +7,17 @@
     background-color: darkgray;
 }
 
-.header__title  {
+.logo {
+    height: 60px;
+    width: 60px;
+}
+
+.title  {
     margin: auto auto;
     padding: 0;
 }
 
-.header__title a{
+.title a{
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './PostsWall.css';
+import style from './PostsWall.module.css';
 import Post from "./Post/Post";
 
 const PostsWall = () => {
     return(
-        <ul className={'posts__wall'}>
+        <ul className={style.wall}>
             <Post />
             <Post />
         </ul>
