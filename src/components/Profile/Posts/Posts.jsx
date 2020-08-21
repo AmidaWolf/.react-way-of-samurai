@@ -1,8 +1,8 @@
 import React from 'react';
 
 import style from './Posts.module.css';
-import WritePost from "../WritePost/WritePost";
-import PostsWall from "../PostsWall/PostsWall";
+import WritePost from "./WritePost/WritePost";
+import PostsWall from "./PostsWall/PostsWall";
 
 const Posts = () => {
     return(

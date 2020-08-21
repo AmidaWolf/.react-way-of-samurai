@@ -6,8 +6,8 @@ import Post from "./Post/Post";
 const PostsWall = () => {
     return(
         <ul className={style.wall}>
-            <Post />
-            <Post />
+            <Post text={'Hi everyone'} likesCount={5}/>
+            <Post text={'what\'s next?'} likesCount={3}/>
         </ul>
     )
 }
