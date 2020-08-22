@@ -1,4 +1,4 @@
-.app-wrapper {
+.wrapper {
   width: 1076px;
   min-height: 100vh;
 
@@ -9,8 +9,14 @@
   grid-template-columns: 2fr 10fr;
   grid-template-areas:
           "header header"
-          "navigation profile"
+          "navigation cWrapper"
 ;
   grid-gap: 10px;
+}
+
+.content-wrapper {
+  grid-area: cWrapper;
+
+  background-color: dimgray;
 }
 

@@ -13,3 +13,7 @@
     text-transform: uppercase;
     color: black;
 }
+
+.activeLink {
+    font-style: italic;
+}

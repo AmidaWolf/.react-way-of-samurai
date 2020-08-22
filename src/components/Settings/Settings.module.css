@@ -1,0 +1,22 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 13fr;
+    grid-gap: 10px;
+}
+
+.logo {
+    height: 60px;
+    width: 60px;
+}
+
+.title  {
+    margin: auto auto;
+    padding: 0;
+}
+
+.title a{
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+}
