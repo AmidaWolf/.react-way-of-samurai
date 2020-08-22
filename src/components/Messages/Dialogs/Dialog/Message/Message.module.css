@@ -1,0 +1,14 @@
+.message {
+    display: grid;
+    grid-template-columns: 1fr 13fr;
+    grid-gap: 10px;
+    margin: 10px;
+}
+
+.name {
+
+}
+
+.messageText {
+    font-style: italic;
+}

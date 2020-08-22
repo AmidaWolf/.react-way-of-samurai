@@ -1,18 +1,18 @@
 import React from 'react';
 
 import style from './Dialog.module.css';
+import Message from "./Message/Message";
 
-const Dialog = () => {
+let TextData = [
+    {id: 0, text: 'Sup'},
+    {id: 1, text: 'Where my money'},
+]
+
+const Dialog = (props) => {
     return(
         <div className={style.dialog}>
-            <div className={style.message}>
-                <img src="https://dummyimage.com/60&text=avatar" alt="avatar"/>
-                <p className={style.messageText}>Sup</p>
-            </div>
-            <div className={style.message}>
-                <img src="https://dummyimage.com/60&text=avatar" alt="avatar"/>
-                <p className={style.messageText}>Where my money?</p>
-            </div>
+            <Message name={props.name} text={TextData[0].text}/>
+            <Message name={props.name} text={TextData[1].text} />
         </div>
     )
 }

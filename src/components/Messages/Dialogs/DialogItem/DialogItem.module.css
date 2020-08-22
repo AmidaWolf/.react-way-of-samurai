@@ -1,0 +1,8 @@
+.itemLink {
+    margin: 10px;
+}
+
+.itemLink a {
+    text-decoration: none;
+    color: black;
+}

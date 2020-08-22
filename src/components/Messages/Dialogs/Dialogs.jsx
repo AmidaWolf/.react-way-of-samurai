@@ -1,19 +1,21 @@
 import React from 'react';
 
 import style from './Dialogs.module.css';
+import DialogItem from "./DialogItem/DialogItem";
+
+
+let UsersDialogData = [
+    {id: 1, name: 'Kus Kabanov'},
+    {id: 2, name: 'Gus Kabanov'},
+    {id: 3, name: 'Srus Kabanov'}
+]
 
 const Dialogs = () => {
-    return(
+    return (
         <ul className={style.dialogs}>
-            <li className={style.itemLink}>
-                <a href="/p1">Kus Kabanov</a>
-            </li>
-            <li className={style.itemLink}>
-                <a href="/p2">Gus Kabanov</a>
-            </li>
-            <li className={style.itemLink}>
-                <a href="/p3">Srus Kabanov</a>
-            </li>
+            <DialogItem name={UsersDialogData[0].name} id={UsersDialogData[0].id}/>
+            <DialogItem name={UsersDialogData[1].name} id={UsersDialogData[1].id}/>
+            <DialogItem name={UsersDialogData[2].name} id={UsersDialogData[2].id}/>
         </ul>
     )
 }

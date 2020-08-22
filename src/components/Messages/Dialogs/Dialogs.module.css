@@ -3,12 +3,3 @@
     margin: 0;
     padding: 0;
 }
-
-.itemLink {
-    margin: 10px;
-}
-
-.itemLink a {
-    text-decoration: none;
-    color: black;
-}
