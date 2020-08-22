@@ -1,0 +1,15 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    display: grid;
+    grid-template-columns: 1fr 13fr;
+    grid-gap: 10px;
+    margin: 10px;
+}
+
+.messageText {
+    font-style: italic;
+}

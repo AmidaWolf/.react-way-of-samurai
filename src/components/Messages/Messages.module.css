@@ -1,6 +1,6 @@
-.dialogs {
+.wrapper {
     display: grid;
-    grid-template-columns: 1fr 13fr;
+    grid-template-columns: 3fr 11fr;
     grid-gap: 10px;
 }
 
