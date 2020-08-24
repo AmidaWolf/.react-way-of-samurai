@@ -10,12 +10,14 @@ let UsersDialogData = [
     {id: 3, name: 'Srus Kabanov'}
 ]
 
+let UserDialogs = UsersDialogData.map((el) => {
+    return <DialogItem name={el.name} id={el.id}/>
+})
+
 const Dialogs = () => {
     return (
         <ul className={style.dialogs}>
-            <DialogItem name={UsersDialogData[0].name} id={UsersDialogData[0].id}/>
-            <DialogItem name={UsersDialogData[1].name} id={UsersDialogData[1].id}/>
-            <DialogItem name={UsersDialogData[2].name} id={UsersDialogData[2].id}/>
+            {UserDialogs}
         </ul>
     )
 }

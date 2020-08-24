@@ -8,11 +8,14 @@ let PostData = [
     {id: 1, text: 'What\'s next?', likes: 3},
 ]
 
+let Posts =PostData.map((el) => {
+    return <Post text={el.text} likesCount={el.likes}/>
+})
+
 const PostsWall = () => {
     return(
         <ul className={style.wall}>
-            <Post text={PostData[0].text} likesCount={PostData[0].likes}/>
-            <Post text={PostData[1].text} likesCount={PostData[1].likes}/>
+            { Posts }
         </ul>
     )
 }
