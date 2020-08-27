@@ -25,6 +25,7 @@ const App = (props) => {
                          render={ () =>
                              <Profile
                                  state={props.state}
+                                 addPost={props.addPost}
                              />}
                   />
                   <Route path="/messages"

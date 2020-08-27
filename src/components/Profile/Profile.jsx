@@ -5,11 +5,12 @@ import UserInfo from "./UserInfo/UserInfo";
 import Posts from "./Posts/Posts";
 
 
+
 const Profile = (props) => {
     return(
         <div>
             <UserInfo />
-            <Posts posts={props.state.profilePage.postData}/>
+            <Posts posts={props.state.profilePage.postData} addPost={props.addPost}/>
         </div>
     )
 }

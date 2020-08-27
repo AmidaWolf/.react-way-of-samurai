@@ -20,6 +20,6 @@
 .title a{
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: black;
 }

@@ -8,7 +8,7 @@ const Posts = (props) => {
     return(
         <div className={style.posts}>
             <h3 className={style.title}>My posts</h3>
-            <WritePost />
+            <WritePost addPost={props.addPost}/>
             <PostsWall posts={props.posts}/>
         </div>
     )

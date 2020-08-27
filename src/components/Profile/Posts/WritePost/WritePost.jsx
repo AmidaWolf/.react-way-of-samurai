@@ -2,11 +2,19 @@ import React from 'react';
 
 import style from './WritePost.module.css';
 
-const WritePost = () => {
-    return(
+const WritePost = (props) => {
+
+    let newPostArea = React.createRef();
+
+    let addPost = () => {
+        let text = newPostArea.current.value;
+        props.addPost(text);
+    }
+
+    return (
         <div className={style.writing}>
-            <textarea name="write-post" id="write-post" rows="2" placeholder="your news..."></textarea>
-            <button>Send</button>
+            <textarea ref={newPostArea} rows="2" placeholder="your news..."></textarea>
+            <button onClick={addPost}>Send</button>
         </div>
     )
 }
