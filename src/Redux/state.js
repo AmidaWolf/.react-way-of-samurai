@@ -13,7 +13,13 @@ let state ={
     messagesPage: {
         textData: [
             {name: 'Kus', text: 'Sup'},
-            {name: 'Kus', text: 'Where my money?'},
+            {name: 'Kus', text: 'Where my money?'}
+        ]
+    },
+    navigationBlock: {
+        onlineFriends: [
+            {id: 1, name: 'Kus Kabanov'},
+            {id: 2, name: 'Gus Kabanov'},
         ]
     }
 
