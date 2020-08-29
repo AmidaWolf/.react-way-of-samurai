@@ -5,8 +5,7 @@ import OnlineFriend from "./OnlineFriend/OnlineFriend";
 
 
 const OnlineFriends = (props) => {
-
-    let OnlineFriendItem = props.state.navigationBlock.onlineFriends.map((el) => {
+    let OnlineFriendItem = props.state.onlineFriends.map((el) => {
         return <OnlineFriend name={el.name} id={el.id}/>
     })
 

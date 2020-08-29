@@ -18,20 +18,21 @@ const App = (props) => {
           <div className={'wrapper'}>
               <Header />
 
-              <Navigation state={props.state}/>
+              <Navigation state={props.state.navigationBlock}/>
 
               <div className={'content-wrapper'}>
                   <Route path="/profile"
                          render={ () =>
                              <Profile
-                                 state={props.state}
+                                 state={props.state.profilePage}
                                  addPost={props.addPost}
+                                 updNewPostText={props.updNewPostText}
                              />}
                   />
                   <Route path="/messages"
                          render={ () =>
                              <Messages
-                                 state={props.state}
+                                 state={props.state.messagesPage}
                              />}
                   />
                   <Route path="/news"

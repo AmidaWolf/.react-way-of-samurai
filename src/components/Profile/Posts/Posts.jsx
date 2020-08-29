@@ -8,8 +8,12 @@ const Posts = (props) => {
     return(
         <div className={style.posts}>
             <h3 className={style.title}>My posts</h3>
-            <WritePost addPost={props.addPost}/>
-            <PostsWall posts={props.posts}/>
+            <WritePost
+                newPostText={props.state.newPostText}
+                addPost={props.addPost}
+                updNewPostText={props.updNewPostText}
+            />
+            <PostsWall posts={props.state.postData}/>
         </div>
     )
 }

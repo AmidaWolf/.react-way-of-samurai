@@ -7,8 +7,8 @@ import Dialog from "./Dialogs/Dialog/Dialog";
 const Messages = (props) => {
     return(
         <div className={style.wrapper}>
-            <Dialogs userDialogs={props.state.profilePage.usersDialogData}/>
-            <Dialog messages={props.state.messagesPage.textData}/>
+            <Dialogs userDialogs={props.state.usersDialogData}/>
+            <Dialog messages={props.state.textData}/>
         </div>
     )
 }
