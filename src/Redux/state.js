@@ -1,4 +1,4 @@
-import {renderTree} from "../render";
+let renderTree = () => {} //need for subscribe
 
 let state ={
     profilePage: {
@@ -28,7 +28,7 @@ let state ={
 
 }
 
-export let addPost = () => {
+export const addPost = () => {
 
     let lastElement = state.profilePage.postData.length;
     let newID = lastElement + 1;
@@ -44,9 +44,13 @@ export let addPost = () => {
     renderTree(state);
 }
 
-export let updNewPostText = (newText) => {
+export const updNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
     renderTree(state)
 }
+
+export const subscribe = (observer) => {
+    renderTree = observer;
+} //callback
 
 export default state;
