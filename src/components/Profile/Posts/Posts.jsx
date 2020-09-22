@@ -10,8 +10,7 @@ const Posts = (props) => {
             <h3 className={style.title}>My posts</h3>
             <WritePost
                 newPostText={props.state.newPostText}
-                addPost={props.addPost}
-                updNewPostText={props.updNewPostText}
+                dispatch={props.dispatch}
             />
             <PostsWall posts={props.state.postData}/>
         </div>

@@ -26,33 +26,34 @@ let store = {
         }
 
     },
+    _callSubscriber () {}, //need for subscribe
+
     getState () {
       return this._state;
-    },
-    _callSubscriber () {},
-    //need for subscribe
-    addPost: function () {
-
-        let lastElement = this._state.profilePage.postData.length;
-        let newID = lastElement + 1;
-
-        let newPost = {
-            id: {newID},
-            text: this._state.profilePage.newPostText,
-            likes: 0
-        }
-
-        this._state.profilePage.postData.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    updNewPostText (newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state)
     },
     subscribe (observer) {
         this._callSubscriber = observer;
     }, //callback
+
+    dispatch (action) {
+        if (action.type === 'ADD-POST') {
+            let lastElement = this._state.profilePage.postData.length;
+            let newID = lastElement + 1;
+
+            let newPost = {
+                id: {newID},
+                text: this._state.profilePage.newPostText,
+                likes: 0
+            }
+
+            this._state.profilePage.postData.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPD-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    }
 
 }
 

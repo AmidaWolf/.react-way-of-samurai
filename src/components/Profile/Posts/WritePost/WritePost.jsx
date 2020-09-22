@@ -7,12 +7,15 @@ const WritePost = (props) => {
     let newPostArea = React.createRef();
 
     let addPost = () => {
-        props.addPost();
+        props.dispatch({ type: 'ADD-POST' });
     }
 
     let onPostChange = () => {
         let text = newPostArea.current.value;
-        props.updNewPostText(text);
+        props.dispatch({
+            type: 'UPD-NEW-POST-TEXT',
+            newText: text
+        });
     }
 
     return (

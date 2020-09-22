@@ -12,8 +12,7 @@ let renderTree = (state) => {
         <React.StrictMode>
             <App
                 state={state}
-                addPost={store.addPost.bind(store)} //bind for this always = store
-                updNewPostText={store.updNewPostText.bind(store)}
+                dispatch={store.dispatch.bind(store)} //bind for this always = store
             />
         </React.StrictMode>,
         document.getElementById('root')
