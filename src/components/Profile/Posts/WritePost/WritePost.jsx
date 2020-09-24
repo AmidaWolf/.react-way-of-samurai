@@ -1,21 +1,20 @@
 import React from 'react';
 
 import style from './WritePost.module.css';
+import {addPostActionCreator, updNewPostTextActionCreator} from "../../../../Redux/state";
+
 
 const WritePost = (props) => {
 
     let newPostArea = React.createRef();
 
     let addPost = () => {
-        props.dispatch({ type: 'ADD-POST' });
+        props.dispatch(addPostActionCreator());
     }
 
     let onPostChange = () => {
         let text = newPostArea.current.value;
-        props.dispatch({
-            type: 'UPD-NEW-POST-TEXT',
-            newText: text
-        });
+        props.dispatch(updNewPostTextActionCreator(text));
     }
 
     return (

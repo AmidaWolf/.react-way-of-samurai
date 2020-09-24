@@ -32,6 +32,7 @@ const App = (props) => {
                          render={ () =>
                              <Messages
                                  state={props.state.messagesPage}
+                                 dispatch={props.dispatch}
                              />}
                   />
                   <Route path="/news"
