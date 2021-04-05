@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './WriteMessage.module.css';
-import {sendMessageActionCreator, updNewMessageTextActionCreator} from "../../../../../Redux/state";
+import {sendMessageActionCreator, updNewMessageTextActionCreator} from "../../../../../Redux/messages-reducer";
 
 const WriteMessage = (props) => {
 

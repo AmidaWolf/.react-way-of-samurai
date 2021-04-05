@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './WritePost.module.css';
-import {addPostActionCreator, updNewPostTextActionCreator} from "../../../../Redux/state";
+import {addPostActionCreator, updNewPostTextActionCreator} from "../../../../Redux/profile-reducer";
 
 
 const WritePost = (props) => {

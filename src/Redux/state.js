@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
-const SEND_MESSAGE = 'ADD-MESSAGE';
-const UPD_NEW_MESSAGE_TEXT = 'UPD-NEW-MESSAGE';
+import {profileReducer} from "./profile-reducer";
+import {messagesReducer} from "./messages-reducer";
+import {navigationReducer} from "./navigation-reducer";
 
 let store = {
     _state: { //if with _ - private, change only into this object
@@ -42,66 +41,14 @@ let store = {
     }, //callback
 
     dispatch (action) {
-        if (action.type === ADD_POST) {
-            let lastElement = this._state.profilePage.postData.length;
-            let newID = lastElement + 1;
-            let newPost = {
-                id: newID,
-                text: this._state.profilePage.newPostText,
-                likes: 0
-            }
-            this._state.profilePage.postData.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
 
-        } else if (action.type === UPD_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._state.navigationBlock = navigationReducer(this._state.navigationBlock, action);
 
-        } else if (action.type === SEND_MESSAGE) {
-            let lastElement = this._state.messagesPage.textData.length;
-            let newID = lastElement + 1;
-            let newMessage = {
-                id: newID,
-                name: 'I',
-                text: this._state.messagesPage.newMessageText,
-            }
-            this._state.messagesPage.textData.push(newMessage);
-            this._state.messagesPage.newMessageText = '';
-            this._callSubscriber(this._state);
-
-        } else if (action.type === UPD_NEW_MESSAGE_TEXT) {
-            this._state.messagesPage.newMessageText = action.newText;
-            this._callSubscriber(this._state);
-
-        }
+        this._callSubscriber(this._state);
     }
 
-}
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-export const sendMessageActionCreator = () => {
-    return {
-        type: SEND_MESSAGE
-    }
-}
-export const updNewPostTextActionCreator = (text) => {
-
-    return {
-        type: UPD_NEW_POST_TEXT,
-        newText: text
-    }
-}
-export const updNewMessageTextActionCreator = (text) => {
-
-    return {
-        type: UPD_NEW_MESSAGE_TEXT,
-        newText: text
-    }
 }
 
 
