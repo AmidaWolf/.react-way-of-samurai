@@ -1,10 +1,10 @@
 const ADD_POST = 'ADD-POST';
 const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPD_NEW_MESSAGE = 'UPD-NEW-MESSAGE';
+const SEND_MESSAGE = 'ADD-MESSAGE';
+const UPD_NEW_MESSAGE_TEXT = 'UPD-NEW-MESSAGE';
 
 let store = {
-    _state: {
+    _state: { //if with _ - private, change only into this object
         profilePage: {
             postData: [
                 {id: 0, text: 'Hi everyone', likes: 5},
@@ -32,7 +32,7 @@ let store = {
         }
 
     },
-    _callSubscriber () {}, //need for subscribe
+    _callSubscriber () {}, //need for subscribe, this is method
 
     getState () {
       return this._state;
@@ -58,7 +58,7 @@ let store = {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
 
-        } else if (action.type === ADD_MESSAGE) {
+        } else if (action.type === SEND_MESSAGE) {
             let lastElement = this._state.messagesPage.textData.length;
             let newID = lastElement + 1;
             let newMessage = {
@@ -70,7 +70,7 @@ let store = {
             this._state.messagesPage.newMessageText = '';
             this._callSubscriber(this._state);
 
-        } else if (action.type === UPD_NEW_MESSAGE) {
+        } else if (action.type === UPD_NEW_MESSAGE_TEXT) {
             this._state.messagesPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
 
@@ -84,9 +84,9 @@ export const addPostActionCreator = () => {
         type: ADD_POST
     }
 }
-export const addMessageActionCreator = () => {
+export const sendMessageActionCreator = () => {
     return {
-        type: ADD_MESSAGE
+        type: SEND_MESSAGE
     }
 }
 export const updNewPostTextActionCreator = (text) => {
@@ -96,14 +96,14 @@ export const updNewPostTextActionCreator = (text) => {
         newText: text
     }
 }
-export const updNewMessageActionCreator = (text) => {
+export const updNewMessageTextActionCreator = (text) => {
 
     return {
-        type: UPD_NEW_MESSAGE,
+        type: UPD_NEW_MESSAGE_TEXT,
         newText: text
     }
 }
 
 
 export default store;
-window.store = store; //for global
+window.store = store; //for global (access from console)

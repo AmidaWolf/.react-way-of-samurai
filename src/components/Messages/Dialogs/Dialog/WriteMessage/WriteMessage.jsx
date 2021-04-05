@@ -1,30 +1,27 @@
 import React from 'react';
 
 import style from './WriteMessage.module.css';
-import {addMessageActionCreator, updNewMessageActionCreator} from "../../../../../Redux/state";
+import {sendMessageActionCreator, updNewMessageTextActionCreator} from "../../../../../Redux/state";
 
 const WriteMessage = (props) => {
 
-    let newMessageArea = React.createRef();
-
-    let addPost = () => {
-        props.dispatch(addMessageActionCreator());
+    let addMessage = () => {
+        props.dispatch(sendMessageActionCreator());
     }
 
-    let onPostChange = () => {
-        let text = newMessageArea.current.value;
-        props.dispatch(updNewMessageActionCreator(text));
+    let onMessageChange = (event) => {
+        let text = event.target.value;
+        props.dispatch(updNewMessageTextActionCreator(text));
     }
 
     return (
         <div className={style.writing}>
             <textarea
-                onChange={onPostChange}
-                ref={newMessageArea}
+                onChange={onMessageChange}
                 rows="2"
                 placeholder="write your message"
                 value={props.newMessageText} />
-            <button onClick={addPost}>Send</button>
+            <button onClick={addMessage}>Send</button>
         </div>
     )
 }
