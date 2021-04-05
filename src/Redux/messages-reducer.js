@@ -1,7 +1,20 @@
 const SEND_MESSAGE = 'ADD-MESSAGE';
 const UPD_NEW_MESSAGE_TEXT = 'UPD-NEW-MESSAGE';
 
-export const messagesReducer = (state, action) => {
+let initialState = {
+    textData: [
+        {id: 0, name: 'Kus', text: 'Sup'},
+        {id: 1, name: 'Kus', text: 'Where my money?'}
+    ],
+    newMessageText: '',
+    usersDialogData: [
+        {id: 0, name: 'Kus Kabanov'},
+        {id: 1, name: 'Gus Kabanov'},
+        {id: 2, name: 'Srus Kabanov'}
+    ],
+}
+
+export const messagesReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SEND_MESSAGE:
