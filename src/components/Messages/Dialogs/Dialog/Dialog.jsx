@@ -2,7 +2,7 @@ import React from 'react';
 
 //import style from './Dialog.module.css';
 import Message from "./Message/Message";
-import WriteMessage from "./WriteMessage/WriteMessage";
+import WriteMessageContainer from "./WriteMessage/WriteMessageContainer";
 
 
 const Dialog = (props) => {
@@ -16,7 +16,7 @@ const Dialog = (props) => {
             <div>
                 {Messages}
             </div>
-            <WriteMessage
+            <WriteMessageContainer
                 newMessageText={props.state.newMessageText}
                 dispatch={props.dispatch}
             />

@@ -1,31 +1,27 @@
 import React from 'react';
 
 import style from './WritePost.module.css';
-import {addPostActionCreator, updNewPostTextActionCreator} from "../../../../Redux/profile-reducer";
 
 
 const WritePost = (props) => {
 
-    let newPostArea = React.createRef();
-
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+    let onAddPost = () => {
+        props.addPost();
     }
 
-    let onPostChange = () => {
-        let text = newPostArea.current.value;
-        props.dispatch(updNewPostTextActionCreator(text));
+    let onPostChange = (event) => {
+        let text = event.target.value;
+        props.postChange(text);
     }
 
     return (
         <div className={style.writing}>
             <textarea
                 onChange={onPostChange}
-                ref={newPostArea}
                 rows="2"
                 placeholder="your news..."
                 value={props.newPostText} />
-            <button onClick={addPost}>Send</button>
+            <button onClick={onAddPost}>Send</button>
         </div>
     )
 }

@@ -1,17 +1,16 @@
 import React from 'react';
 
 import style from './WriteMessage.module.css';
-import {sendMessageActionCreator, updNewMessageTextActionCreator} from "../../../../../Redux/messages-reducer";
 
 const WriteMessage = (props) => {
 
-    let addMessage = () => {
-        props.dispatch(sendMessageActionCreator());
+    let onAddMessage = () => {
+        props.addMessage();
     }
 
     let onMessageChange = (event) => {
         let text = event.target.value;
-        props.dispatch(updNewMessageTextActionCreator(text));
+        props.messageChange(text);
     }
 
     return (
@@ -21,7 +20,7 @@ const WriteMessage = (props) => {
                 rows="2"
                 placeholder="write your message"
                 value={props.newMessageText} />
-            <button onClick={addMessage}>Send</button>
+            <button onClick={onAddMessage}>Send</button>
         </div>
     )
 }
