@@ -7,7 +7,7 @@ import WriteMessageContainer from "./WriteMessage/WriteMessageContainer";
 
 const Dialog = (props) => {
 
-    let Messages = props.state.textData.map((el) => {
+    let Messages = props.textData.map((el) => {
     return <Message name={el.name} text={el.text}/>
 })
 
@@ -16,10 +16,7 @@ const Dialog = (props) => {
             <div>
                 {Messages}
             </div>
-            <WriteMessageContainer
-                newMessageText={props.state.newMessageText}
-                dispatch={props.dispatch}
-            />
+            <WriteMessageContainer />
         </div>
 
 

@@ -6,7 +6,5 @@ let initialState = {
 }
 
 export const navigationReducer = (state = initialState, action) => {
-
-
     return state;
 }

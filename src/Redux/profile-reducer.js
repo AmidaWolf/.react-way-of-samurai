@@ -10,7 +10,6 @@ let initialState = {
 }
 
 export const profileReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case ADD_POST:
             let lastElement = state.postData.length;
@@ -20,15 +19,23 @@ export const profileReducer = (state = initialState, action) => {
                 text: state.newPostText,
                 likes: 0
             }
-            state.postData.push(newPost);
-            state.newPostText = '';
-            return state;
+            return  {
+                ...state,
+                newPostText : '',
+                postData : [...state.postData, newPost]
+            };
+
 
         case UPD_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            return {
+                ...state,
+                newPostText : action.newText
+            };
+
+
         default:
             return state;
+
     }
 }
 

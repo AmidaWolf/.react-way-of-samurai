@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 
 import style from './Navigation.module.css';
-import OnlineFriends from "./OnlineFriends/OnlineFriends";
+import OnlineFriendsContainer from "./OnlineFriends/OnlineFriendsContainer";
 
 
 const Navigation = () => {
@@ -25,7 +25,7 @@ const Navigation = () => {
                     <NavLink to="/settings" activeClassName={style.activeLink}>Settings</NavLink>
                 </li>
             </ul>
-            <OnlineFriends />
+            <OnlineFriendsContainer />
         </nav>
     )
 }

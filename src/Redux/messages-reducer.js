@@ -15,7 +15,6 @@ let initialState = {
 }
 
 export const messagesReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case SEND_MESSAGE:
             let lastElement = state.textData.length;
@@ -25,12 +24,18 @@ export const messagesReducer = (state = initialState, action) => {
                 name: 'I',
                 text: state.newMessageText,
             }
-            state.textData.push(newMessage);
-            state.newMessageText = '';
-            return state;
+            return  {
+                ...state,
+                newMessageText : '',
+                textData : [...state.textData, newMessage]
+            };
+
         case UPD_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText;
-            return state;
+            return  {
+                ...state,
+                newMessageText : action.newText
+            };
+
         default:
             return state;
     }
