@@ -5,7 +5,7 @@ import style from './Navigation.module.css';
 import OnlineFriends from "./OnlineFriends/OnlineFriends";
 
 
-const Navigation = (props) => {
+const Navigation = () => {
     return(
         <nav className={style.nav}>
             <ul className={style.menu}>
@@ -25,7 +25,7 @@ const Navigation = (props) => {
                     <NavLink to="/settings" activeClassName={style.activeLink}>Settings</NavLink>
                 </li>
             </ul>
-            <OnlineFriends state={props.state}/>
+            <OnlineFriends />
         </nav>
     )
 }

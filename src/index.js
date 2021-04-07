@@ -8,14 +8,13 @@ import './index.css';
 import {store} from "./Redux/redux-store";
 
 import App from './App';
+import StoreContext from "./storeContext";
 
 let renderTree = (state) => {
     ReactDOM.render(
-
-            <App //del strict mode, only for debug
-                state={state}
-                dispatch={store.dispatch.bind(store)} //bind for this always = store
-            />
+            <StoreContext.Provider value={store}>
+                <App />
+            </StoreContext.Provider>
         ,
         document.getElementById('root')
     );

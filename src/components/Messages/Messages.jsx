@@ -3,17 +3,25 @@ import React from 'react';
 import style from './Messages.module.css';
 import Dialogs from "./Dialogs/Dialogs";
 import Dialog from "./Dialogs/Dialog/Dialog";
+import StoreContext from "../../storeContext";
 
 
-const Messages = (props) => {
+const Messages = () => {
     return(
-        <div className={style.wrapper}>
-            <Dialogs userDialogs={props.state.usersDialogData}/>
-            <Dialog
-                state={props.state}
-                dispatch={props.dispatch}
-            />
-        </div>
+        <StoreContext.Consumer>
+            { store => {
+                let state = store.getState();
+                return <div className={style.wrapper}>
+                    <Dialogs userDialogs={state.messagesPage.usersDialogData}/>
+                    <Dialog
+                        state={state.messagesPage}
+                        dispatch={store.dispatch}
+                    />
+                </div>
+                }
+            }
+        </StoreContext.Consumer>
+
     )
 }
 

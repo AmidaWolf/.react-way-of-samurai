@@ -4,16 +4,11 @@ import React from 'react';
 import UserInfo from "./UserInfo/UserInfo";
 import Posts from "./Posts/Posts";
 
-
-
-const Profile = (props) => {
+const Profile = () => {
     return(
         <div>
             <UserInfo />
-            <Posts
-                state={props.state}
-                dispatch={props.dispatch}
-            />
+            <Posts />
         </div>
     )
 }

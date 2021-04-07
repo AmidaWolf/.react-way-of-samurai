@@ -12,38 +12,35 @@ import Settings from "./components/Settings/Settings";
 
 
 
-const App = (props) => {
+const App = () => {
   return (
       <BrowserRouter>
           <div className={'wrapper'}>
               <Header />
 
-              <Navigation state={props.state.navigationBlock}/>
+              <Navigation />
 
               <div className={'content-wrapper'}>
                   <Route path="/profile"
                          render={ () =>
-                             <Profile
-                                 state={props.state.profilePage}
-                                 dispatch={props.dispatch}
-                             />}
+                             <Profile />}
                   />
                   <Route path="/messages"
                          render={ () =>
-                             <Messages
-                                 state={props.state.messagesPage}
-                                 dispatch={props.dispatch}
-                             />}
+                             <Messages />}
                   />
                   <Route path="/news"
                          render={ () =>
-                             <News />}/>
+                             <News />}
+                  />
                   <Route path="/music"
                          render={ () =>
-                             <Music />}/>
+                             <Music />}
+                  />
                   <Route path="/settings"
                          render={ () =>
-                             <Settings />}/>
+                             <Settings />}
+                  />
               </div>
           </div>
       </BrowserRouter>
