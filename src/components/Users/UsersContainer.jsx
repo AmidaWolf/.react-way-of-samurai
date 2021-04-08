@@ -6,7 +6,8 @@ import {followActionCreator, setUsersActionCreator, unFollowActionCreator} from 
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        page: state.usersPage.page
     }
 }
 
@@ -18,8 +19,8 @@ const mapDispatchToProps = (dispatch) => {
         unFollowUser: (userId) => {
             dispatch(unFollowActionCreator(userId));
         },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users));
+        setUsers: (users, page) => {
+            dispatch(setUsersActionCreator(users, page));
         }
     }
 }

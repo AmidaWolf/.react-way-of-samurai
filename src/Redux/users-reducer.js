@@ -3,64 +3,8 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 
 let initialState = {
-    users: [
-        {
-            id: 0,
-            photoUrl: 'https://dummyimage.com/120&text=avatar',
-            fullName: {
-                firstName: 'Kus',
-                shortSecondName: 'K' ,
-            },
-            status: 'This my status',
-            location: {
-                city: 'Minsk',
-                country: 'Belarus'
-            },
-            followed: false
-        },
-        {
-            id: 1,
-            photoUrl: 'https://dummyimage.com/120&text=avatar',
-            fullName: {
-                firstName: 'Gus',
-                shortSecondName: 'K' ,
-            },
-            status: 'This my status',
-            location: {
-                city: 'Moscow',
-                country: 'Russia'
-            },
-            followed: false
-        },
-        {
-            id: 2,
-            photoUrl: 'https://dummyimage.com/120&text=avatar',
-            fullName: {
-                firstName: 'Srus',
-                shortSecondName: 'K' ,
-            },
-            status: 'This my status',
-            location: {
-                city: 'Lublin',
-                country: 'Poland'
-            },
-            followed: true
-        },
-        {
-            id: 3,
-            photoUrl: 'https://dummyimage.com/120&text=avatar',
-            fullName: {
-                firstName: 'Tus',
-                shortSecondName: 'K' ,
-            },
-            status: 'This my status',
-            location: {
-                city: 'Mogilev',
-                country: 'Belarus'
-            },
-            followed: false
-        }
-    ]
+    users: [],
+    page: 1
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -87,7 +31,7 @@ export const usersReducer = (state = initialState, action) => {
                 })
             };
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users] }
+            return {...state, page: action.page + 1, users: [...state.users, ...action.users] }
         default:
             return state;
     }
@@ -106,9 +50,10 @@ export const unFollowActionCreator = (userId) => {
     }
 }
 
-export const setUsersActionCreator = (users) => {
+export const setUsersActionCreator = (users, page) => {
     return {
         type: SET_USERS,
-        users: users
+        users: users,
+        page: page
     }
 }

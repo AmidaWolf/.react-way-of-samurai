@@ -6,7 +6,12 @@ const User = (props) => {
     return(
         <li className={style.user}>
             <div className={style.avatar_button}>
-                <img className={style.avatar} src={props.photoUrl} alt="avatar"/>
+                <img
+                    className={style.avatar}
+                    src={
+                        props.photoUrl != null
+                            ? props.photoUrl : "https://dummyimage.com/120&text=avatar"}
+                    alt="avatar"/>
                 <div>
                     {
                         props.followed ?
@@ -28,10 +33,10 @@ const User = (props) => {
             </div>
             <div className={style.user_info}>
                 <div className={style.user_info_wrapper}>
-                    <h3 className={style.user_name}>{props.firstName + ' ' + props.shortSecondName}</h3>
+                    <h3 className={style.user_name}>{props.name}</h3>
                     <div>
-                        <p className={style.text}>{props.city + ','}</p>
-                        <p className={style.text}>{props.country}</p>
+                        <p className={style.text}>{"props.city + ','"}</p>
+                        <p className={style.text}>{"props.country"}</p>
                     </div>
 
                 </div>
