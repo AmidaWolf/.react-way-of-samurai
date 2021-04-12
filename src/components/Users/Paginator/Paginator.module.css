@@ -1,0 +1,14 @@
+.pagination {
+    align-self: center;
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.selected_page {
+    font-weight: bold;
+}
+
+span {
+    margin: 0 2px;
+}
