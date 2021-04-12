@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './Users.module.css';
 import User from "./User/User";
-import Paginator from "./Paginator/Paginator";
+import PaginatorContainer from "./Paginator/PaginatorContainer";
 
  let Users = (props) => {
      let UsersList = props.users.map((el) => {
@@ -23,13 +23,14 @@ import Paginator from "./Paginator/Paginator";
              <ul className={style.users}>
                  {UsersList}
              </ul>
-             <Paginator
+             <PaginatorContainer
                  users={props.users}
                  setUsers={props.setUsers}
                  setTotalUsersCount={props.setTotalUsersCount}
                  page={props.page}
                  pageSize={props.pageSize}
                  totalUsersCount={props.totalUsersCount}
+                 setIsFetching={props.setIsFetching}
              />
          </div>
      )
