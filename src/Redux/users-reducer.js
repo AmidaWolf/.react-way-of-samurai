@@ -55,21 +55,21 @@ export const usersReducer = (state = initialState, action) => {
             return state;
     }
 }
-export const followActionCreator = (userId) => {
+export const follow = (userId) => {
     return {
         type: FOLLOW,
         userId: userId
     }
 }
 
-export const unFollowActionCreator = (userId) => {
+export const unFollow = (userId) => {
     return {
         type: UNFOLLOW,
         userId: userId
     }
 }
 
-export const setUsersActionCreator = (users, page) => {
+export const setUsers = (users, page) => {
     return {
         type: SET_USERS,
         users: users,
@@ -77,7 +77,7 @@ export const setUsersActionCreator = (users, page) => {
     }
 }
 
-export const setTotalUsersCountActionCreator = (count) => {
+export const setTotalUsersCount = (count) => {
     return {
         type: TOTAL_USERS_COUNT,
         count: count
