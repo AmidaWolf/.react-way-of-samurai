@@ -4,6 +4,7 @@ import React from 'react';
 import UserInfo from "./UserInfo/UserInfo";
 import Posts from "./Posts/Posts";
 
+
 const Profile = (props) => {
     return(
         <div>

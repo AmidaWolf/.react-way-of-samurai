@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './UserInfo.module.css';
-import Preloader from "../../Users/Preloader/Preloader";
+import Preloader from "../../Preloader/Preloader";
 import UserContacts from "./UserContacts/UserContacts";
 import UserJob from "./UserJob/UserJob";
 
@@ -24,7 +24,14 @@ const UserInfo = (props) => {
             />
             <div className={style.text}>
                 <h2 className={style.username}>{props.profile.fullName}</h2>
-                <p>{'About me: ' + props.profile.aboutMe}</p>
+                <p>About me: </p>
+                <p>
+                    {
+                        props.profile.aboutMe != null ?
+                            props.profile.aboutMe :
+                            'User dont write about himself'
+                    }
+                </p>
                 <UserContacts contacts={props.profile.contacts}/>
                 <UserJob
                     lookingForAJob={props.profile.lookingForAJob}

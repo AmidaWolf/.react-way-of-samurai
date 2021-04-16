@@ -5,17 +5,24 @@ import style from './UserContacts.module.css';
 
 const UserContacts = (props) => {
     let contactsList=[];
+
+    if (Object.values(props.contacts).every(o => o === null)) {
+        contactsList.push(<li key={'base'}>User dont add any contacts</li>);
+    }
+
     Object.keys(props.contacts).forEach(function(key) {
         if (this[key] !== null) {
-            contactsList.push(<p>{key + ': '}<a href={this[key]}>{this[key]}</a></p>)
+            contactsList.push(<li key={this[key]}>{key + ': '}<a href={this[key]}>{this[key]}</a></li>)
         }
     }, props.contacts);
 
     return (
-        <div className={style.contacts}>
-            <p>Contacts: </p>
-            {contactsList}
-        </div>
+        <>
+            <p>Contacts:</p>
+            <ul className={style.contacts}>
+                {contactsList}
+            </ul>
+        </>
     )
 }
 

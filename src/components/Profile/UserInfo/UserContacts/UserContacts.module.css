@@ -33,4 +33,8 @@
     margin: 0 0 10px 0;
 }
 
-.contacts {}
+.contacts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
