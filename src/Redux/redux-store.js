@@ -11,4 +11,8 @@ let reducers = combineReducers({
     usersPage : usersReducer
 });
 
-export let store = createStore(reducers);
+let store = createStore(reducers);
+
+window.store = store;
+
+export {store};

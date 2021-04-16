@@ -1,12 +1,15 @@
 const ADD_POST = 'ADD-POST';
 const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_IS_FETCHING = 'SET_IS_FETCHING';
 
 let initialState = {
     postData: [
         {id: 0, text: 'Hi everyone', likes: 5},
         {id: 1, text: 'What\'s next?', likes: 3}
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -32,7 +35,16 @@ export const profileReducer = (state = initialState, action) => {
                 newPostText : action.newText
             };
 
-
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile : action.profile
+            };
+        case SET_IS_FETCHING:
+            return{
+                ...state,
+                isFetching: action.status
+            }
         default:
             return state;
 
@@ -50,5 +62,14 @@ export const updNewPostTextActionCreator = (text) => {
     return {
         type: UPD_NEW_POST_TEXT,
         newText: text
+    }
+}
+
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
+export const setIsFetching = (status) => {
+    return {
+        type: SET_IS_FETCHING,
+        status: status
     }
 }
