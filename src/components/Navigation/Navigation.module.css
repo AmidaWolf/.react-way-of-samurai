@@ -1,17 +1,28 @@
 .nav {
     grid-area: navigation;
 
+    display: flex;
+    flex-direction: column;
+
     background-color: gray;
+    padding: 20px;
 }
 
 .menu {
     list-style: none;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 0;
 }
 
 .item a {
     text-decoration: none;
     text-transform: uppercase;
     color: black;
+}
+
+.item:hover a {
+    border-bottom: 2px solid black;
 }
 
 .activeLink {

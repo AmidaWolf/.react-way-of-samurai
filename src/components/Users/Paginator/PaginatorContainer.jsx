@@ -9,7 +9,8 @@ class PaginatorContainer extends React.Component {
         axios.get('https://social-network.samuraijs.com/api/1.0/users',
             {
                 params: {
-                    page: page
+                    page: page,
+                    withCredentials : true
                 }
             })
             .then(response => {
