@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './User.module.css';
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {followUser, unfollowUser} from "../../../api/api";
 
 const User = (props) => {
     return(
@@ -23,15 +23,8 @@ const User = (props) => {
                                 <button
                                     className={style.follow_button}
                                     onClick={() => {
-                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`,
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '143452f7-7f67-453a-8856-3e831970545f'
-                                                }
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
+                                        unfollowUser(props.id).then(response => {
+                                                if (response.resultCode === 0) {
                                                     props.unfollow(props.id)
                                                 }
                                             })
@@ -40,16 +33,8 @@ const User = (props) => {
                                 <button
                                     className={style.follow_button}
                                     onClick={() => {
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`,
-                                            {},
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '143452f7-7f67-453a-8856-3e831970545f'
-                                                }
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
+                                            followUser(props.id).then(response => {
+                                                if (response.resultCode === 0) {
                                                     props.follow(props.id)
                                                 }
                                             })
@@ -62,11 +47,6 @@ const User = (props) => {
                 <div className={style.user_info_wrapper}>
                     <div className={style.user_info}>
                         <h3 className={style.user_name}>{props.name}</h3>
-                        <div>
-                            <p className={style.text}>{"props.city + ','"}</p>
-                            <p className={style.text}>{"props.country"}</p>
-                        </div>
-
                     </div>
                     <p className={style.text}>{props.status}</p>
                 </div>

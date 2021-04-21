@@ -1,19 +1,13 @@
 import React from 'react';
 
-import * as axios from "axios";
+
 import Paginator from "./Paginator";
+import {getUsersApi} from "../../../api/api";
 
 class PaginatorContainer extends React.Component {
     getUsers = (page) => {
         this.props.setIsFetching(true);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users',
-            {
-                params: {
-                    page: page,
-                    withCredentials : true
-                }
-            })
-            .then(response => {
+            getUsersApi(page).then(response => {
                 this.props.setUsers(response.data.items, page);
                 this.props.setTotalUsersCount(response.data.totalCount);
                 this.props.setIsFetching(false);
