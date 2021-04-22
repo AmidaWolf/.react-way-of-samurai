@@ -3,7 +3,7 @@ import React from "react";
 
 
 import {
-    follow,
+    follow, setFollowInProgress,
     setIsFetching,
     setTotalUsersCount,
     setUsers,
@@ -41,6 +41,8 @@ class UsersContainer extends React.Component {
                     follow={this.props.follow}
                     unfollow={this.props.unFollow}
                     setIsFetching={this.props.setIsFetching}
+                    setFollowInProgress={this.props.setFollowInProgress}
+                    followInProgress={this.props.followInProgress}
                 />
             </>
         )
@@ -53,7 +55,8 @@ const mapStateToProps = (state) => {
         page: state.usersPage.page,
         pageSize:state.usersPage.pageSize,
         totalUsersCount:state.usersPage.totalUsersCount,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followInProgress: state.usersPage.followInProgress
     }
 }
 
@@ -62,6 +65,7 @@ export default connect(mapStateToProps, {
     unFollow,
     setUsers,
     setTotalUsersCount,
-    setIsFetching
+    setIsFetching,
+    setFollowInProgress
 })(UsersContainer);
 

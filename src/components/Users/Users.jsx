@@ -15,6 +15,8 @@ import PaginatorContainer from "./Paginator/PaginatorContainer";
              key={el.id}
              follow={props.follow}
              unfollow={props.unfollow}
+             setFollowInProgress={props.setFollowInProgress}
+             followInProgress={props.followInProgress}
          />
      })
 
