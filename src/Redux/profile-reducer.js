@@ -1,3 +1,5 @@
+import {getUser} from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -71,5 +73,16 @@ export const setIsFetching = (status) => {
     return {
         type: SET_IS_FETCHING,
         status: status
+    }
+}
+
+export const getUserInfo = (id) => {
+    return (dispatch) => {
+        if (id === undefined) {
+            id = 16379;
+        }
+        getUser(id).then(response => {
+            dispatch(setUserProfile(response));
+        })
     }
 }

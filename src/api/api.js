@@ -25,7 +25,7 @@ export const followUser = (id) => {
 
 export const getUsersApi = (page = 1) => {
     return (
-        instance.get('users')
+        instance.get('users?page=' + page)
             .then(response => response.data)
     )
 }

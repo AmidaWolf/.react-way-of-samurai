@@ -1,8 +1,7 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 
 import style from './User.module.css';
-import {NavLink} from "react-router-dom";
-import {followUser, unfollowUser} from "../../../api/api";
 
 
 const User = (props) => {
@@ -23,22 +22,7 @@ const User = (props) => {
                             disabled={props.followInProgress.some(id => id === props.id)}
                             className={style.follow_button}
                             onClick={() => {
-                                props.setFollowInProgress(true, props.id);
-                                if (props.followed) {
-                                    unfollowUser(props.id).then(response => {
-                                        if (response.resultCode === 0) {
-                                            props.unfollow(props.id)
-                                        }
-                                        props.setFollowInProgress(false, props.id);
-                                    })
-                                } else {
-                                    followUser(props.id).then(response => {
-                                        if (response.resultCode === 0) {
-                                            props.follow(props.id)
-                                        }
-                                        props.setFollowInProgress(false, props.id);
-                                    })
-                                }
+                                props.toggleFollowUser(props.id, props.followed);
                             }}>
                             {!props.followed ? 'Follow' : 'Unfollow'}
                         </button>

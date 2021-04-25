@@ -11,7 +11,7 @@ let Paginator = (props) => {
     }
     let PagesList = pages.map((el) => {
         return <span
-            onClick={()=>{props.getUsers(el, props)}}
+            onClick={()=>{props.getUsers(el)}}
             key={el}
             className={props.page === el ? style.selected_page : style.page}>
             {el}
