@@ -18,7 +18,7 @@ const UserInfo = (props) => {
                 className={style.avatar}
                 src={
                 props.profile.photos.large != null
-                    ? props.photoUrl : "https://dummyimage.com/120&text=avatar"
+                    ? props.profile.photos.large : "https://dummyimage.com/120&text=avatar"
                 }
                 alt="avatar"
             />
