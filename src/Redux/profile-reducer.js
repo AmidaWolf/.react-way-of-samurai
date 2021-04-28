@@ -11,7 +11,7 @@ let initialState = {
         {id: 1, text: 'What\'s next?', likes: 3}
     ],
     newPostText: '',
-    profile: null
+    profile: null,
 }
 
 export const profileReducer = (state = initialState, action) => {

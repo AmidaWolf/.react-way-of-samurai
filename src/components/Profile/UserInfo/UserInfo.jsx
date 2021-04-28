@@ -4,6 +4,7 @@ import style from './UserInfo.module.css';
 import Preloader from "../../Preloader/Preloader";
 import UserContacts from "./UserContacts/UserContacts";
 import UserJob from "./UserJob/UserJob";
+import UserStatus from "./UserStatus/UserStatus";
 
 const UserInfo = (props) => {
     if (!props.profile) {
@@ -24,6 +25,7 @@ const UserInfo = (props) => {
             />
             <div className={style.text}>
                 <h2 className={style.username}>{props.profile.fullName}</h2>
+                <UserStatus status={'status ebany'}/>
                 <p>About me: </p>
                 <p>
                     {
