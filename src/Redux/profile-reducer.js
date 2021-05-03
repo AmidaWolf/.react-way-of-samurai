@@ -1,9 +1,10 @@
-import {getUser} from "../api/api";
+import {getStatus, getUser, updateStatus} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_IS_FETCHING = 'SET_IS_FETCHING';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     postData: [
@@ -12,6 +13,7 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
+    status: ''
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -47,6 +49,11 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.status
             }
+        case SET_STATUS:
+            return{
+                ...state,
+                status: action.text
+            }
         default:
             return state;
 
@@ -60,7 +67,6 @@ export const addPostActionCreator = () => {
     }
 }
 export const updNewPostTextActionCreator = (text) => {
-
     return {
         type: UPD_NEW_POST_TEXT,
         newText: text
@@ -83,6 +89,35 @@ export const getUserInfo = (id) => {
         }
         getUser(id).then(response => {
             dispatch(setUserProfile(response));
+        })
+    }
+}
+
+export const setUserStatus = (text) => {
+    return {
+        type: SET_STATUS,
+        text: text
+    }
+}
+
+export const getUserStatus = (id) => {
+    return (dispatch) => {
+        if (id === undefined) {
+            id = 16379;
+        }
+        getStatus(id).then(response => {
+            dispatch(setUserStatus(response));
+        })
+    }
+}
+
+export const updateUserStatus = (text) => {
+    return (dispatch) => {
+        updateStatus(text).then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setUserStatus(text));
+            }
+
         })
     }
 }

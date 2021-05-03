@@ -4,17 +4,39 @@ import style from './UserStatus.module.css';
 
 class UserStatus extends React.Component {
     state = {
-        editMode : false
+        editMode : false,
+        status: this.props.status
     };
 
-    toggleEditMode = (status) => {
+    activateEditMode = () => {
         this.setState( {
-                editMode: status
+                editMode: true
             }
         )
     }
 
+    deactivateEditMode = () => {
+        this.setState({
+            editMode: false
+        });
+        this.props.updateUserStatus(this.state.status);
+    }
+
+    onStatusChange = (e) => {
+        this.setState({
+            status: e.target.value
+        })
+    }
+
     handleFocus = (event) => event.target.select()
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.status !== this.props.status) {
+            this.setState({
+                status : this.props.status
+            })
+        }
+    }
 
     render() {
         return (
@@ -22,15 +44,16 @@ class UserStatus extends React.Component {
                 {!this.state.editMode ?
                     <div>
                         <span className={style.statusText}
-                            onClick={()=>{this.toggleEditMode(true)}}>
-                            {this.props.status}
+                            onClick={()=>{this.activateEditMode()}}>
+                            {!this.props.status ? 'Write u\'r status' : this.props.status}
                         </span>
                     </div> :
                     <div>
                         <input
                             type="text"
-                            value={this.props.status}
-                            onBlur={()=>{this.toggleEditMode(false)}}
+                            defaultValue={this.state.status}
+                            onChange={this.onStatusChange}
+                            onBlur={()=>{this.deactivateEditMode()}}
                             onFocus={this.handleFocus}
                             autoFocus={true}
                         />

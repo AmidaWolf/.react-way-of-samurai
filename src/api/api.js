@@ -13,7 +13,8 @@ const instance = axios.create({
 export const unfollowUser = (id) => {
     return (
         instance.delete(`follow/${id}`
-        )).then(response => response.data)
+        ).then(response => response.data)
+    )
 }
 
 export const followUser = (id) => {
@@ -41,5 +42,18 @@ export const authMe = () => {
     return (
         instance.get(`auth/me`)
             .then(response => response.data)
+    )
+}
+
+export const getStatus = (userId) => {
+    return (
+        instance.get('/profile/status/' + userId)
+            .then(response => response.data)
+    )
+}
+
+export const updateStatus = (text) => {
+    return (
+        instance.put('/profile/status', {status: text})
     )
 }

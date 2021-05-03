@@ -8,7 +8,11 @@ import Posts from "./Posts/Posts";
 const Profile = (props) => {
     return(
         <div>
-            <UserInfo profile={props.profile}/>
+            <UserInfo
+                profile={props.profile}
+                status={props.status}
+                updateUserStatus={props.updateUserStatus}
+            />
             <Posts />
         </div>
     )

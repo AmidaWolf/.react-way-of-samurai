@@ -25,7 +25,7 @@ const UserInfo = (props) => {
             />
             <div className={style.text}>
                 <h2 className={style.username}>{props.profile.fullName}</h2>
-                <UserStatus status={'status ebany'}/>
+                <UserStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
                 <p>About me: </p>
                 <p>
                     {
@@ -43,5 +43,4 @@ const UserInfo = (props) => {
         </div>
     )
 }
-//add bulean lookingForAJob
 export default UserInfo;
