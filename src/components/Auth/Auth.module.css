@@ -3,6 +3,11 @@
     align-items: center;
 }
 
+.auth_wrapper {
+    display: flex;
+    align-items: center;
+}
+
 .profile {
     margin-right: 20px;
 }
@@ -10,6 +15,7 @@
 .logo {
     height: 60px;
     width: 60px;
+    margin-right: 20px;
 }
 
 .link {
@@ -17,4 +23,15 @@
     text-decoration: none;
     /*text-transform: uppercase;*/
     color: black;
+}
+
+.logout {
+    width: auto;
+    height: auto;
+    border: 4px solid #ffffff;
+    border-radius: 0;
+    cursor: pointer;
+    background-color: #cccccc;
+    padding: 5px;
+    margin-right: 20px;
 }

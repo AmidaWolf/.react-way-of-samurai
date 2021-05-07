@@ -6,18 +6,22 @@ import style from "../Auth/Auth.module.css";
 
 const Auth = (props) => {
     return (
-        <div>
+        <div className={style.auth_wrapper}>
             {
                 props.isAuth ?
-                    <div className={style.auth}>
-                        <p className={style.profile}>{props.login}</p>
-                        <img className={style.logo}
-                             src={
-                                 props.photoURL != null
-                                     ? props.photoURL :
-                                     "https://dummyimage.com/60&text=avatar"
-                             } alt="logged user"/>
-                    </div> :
+                    <NavLink className={style.link} to={'/profile'}>
+                        <div className={style.auth}>
+                            <p className={style.profile}>{props.login}</p>
+                            <img className={style.logo}
+                                 src={
+                                     props.photoURL != null
+                                         ? props.photoURL :
+                                         "https://dummyimage.com/60&text=avatar"
+                                 } alt="logged user"/>
+                            <button className={style.logout} onClick={props.setUserLogout} type={'button'}>Logout</button>
+                        </div>
+                    </NavLink>
+                     :
                     <NavLink className={style.link} to={'/login'}>Login</NavLink>
             }
         </div>

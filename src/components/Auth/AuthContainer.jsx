@@ -2,21 +2,12 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import Auth from "./Auth";
-import {setUserData, setUserPhoto} from "../../Redux/auth-reducer";
-import {authMe, getUser} from "../../api/api";
+import {getAuthUserData, setUserLogout} from "../../Redux/auth-reducer";
 
 
 class AuthContainer extends React.Component {
     componentDidMount() {
-            authMe().then(response => {
-                if (response.resultCode === 0) {
-                    let {id, email, login} = response.data;
-                    this.props.setUserData(id, email, login);
-                   getUser(id).then(response => {
-                            this.props.setUserPhoto(response.photos.small);
-                        })
-                }
-            })
+        this.props.getAuthUserData();
     }
 
     render() {
@@ -34,6 +25,6 @@ let mapStateToProps = (state) => ({
 
 export default connect(
     mapStateToProps,
-    {setUserData, setUserPhoto}
+    {getAuthUserData, setUserLogout}
 )(AuthContainer);
 

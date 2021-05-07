@@ -10,7 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import {Login} from "./components/Login/Login";
+import LoginContainer from "./components/Login/LoginContainer";
 
 
 const App = () => {
@@ -48,7 +48,7 @@ const App = () => {
                   />
                   <Route path="/login"
                          render={ () =>
-                             <Login />}
+                             <LoginContainer />}
                   />
               </div>
           </div>

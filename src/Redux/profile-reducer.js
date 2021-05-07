@@ -84,9 +84,6 @@ export const setIsFetching = (status) => {
 
 export const getUserInfo = (id) => {
     return (dispatch) => {
-        if (id === undefined) {
-            id = 16379;
-        }
         getUser(id).then(response => {
             dispatch(setUserProfile(response));
         })

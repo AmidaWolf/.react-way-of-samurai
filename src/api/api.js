@@ -4,10 +4,10 @@ import axios from "axios";
 const instance = axios.create({
         baseURL: `https://social-network.samuraijs.com/api/1.0/`,
         withCredentials: true,
+        mode: 'no-cors',
         headers: {
-            'API-KEY': '143452f7-7f67-453a-8856-3e831970545f'
+            'API-KEY': 'f849b47a-7b1a-4492-91e1-80a3db415ddd'
         }
-
     })
 
 export const unfollowUser = (id) => {
@@ -55,5 +55,19 @@ export const getStatus = (userId) => {
 export const updateStatus = (text) => {
     return (
         instance.put('/profile/status', {status: text})
+    )
+}
+
+export const loginMe = (data) => {
+    return (
+        instance.post('/auth/login', {...data})
+            .then(response => response.data)
+    )
+}
+
+export const logoutMe = () => {
+    return (
+        instance.delete('/auth/login')
+            .then(response => response.data)
     )
 }

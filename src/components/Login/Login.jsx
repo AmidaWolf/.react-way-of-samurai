@@ -1,11 +1,12 @@
 import React from 'react';
+import {Redirect} from "react-router-dom";
 
-import style from "../Login/Login.module.css";
+import {LoginForm} from "./LoginForm/LoginForm";
 
-export const Login = () => {
-    return(
-        <div className={style.login_container}>
-            <h2>Login</h2>
-        </div>
-    )
+
+export const Login = (props) => {
+    if (props.isAuth) {
+        return <Redirect to={'/profile'} />
+    }
+    return <LoginForm setUserLogin={props.setUserLogin} />
 }
