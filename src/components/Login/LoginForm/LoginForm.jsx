@@ -24,6 +24,7 @@ export const LoginForm = (props) => {
     return (
         <div className={style.login_container}>
             <h1>Login</h1>
+
             <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={validation}
@@ -61,6 +62,11 @@ export const LoginForm = (props) => {
                         <button type="submit" disabled={isSubmitting}>
                             Login
                         </button>
+                        {
+                            props.errorLogin ?
+                                <p className={style.error_login}>Error: {props.errorLogin}</p> :
+                                null
+                        }
                     </Form>
                 )}
             </Formik>

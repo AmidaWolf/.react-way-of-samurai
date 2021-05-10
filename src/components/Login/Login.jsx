@@ -8,5 +8,8 @@ export const Login = (props) => {
     if (props.isAuth) {
         return <Redirect to={'/profile'} />
     }
-    return <LoginForm setUserLogin={props.setUserLogin} />
+    return <LoginForm
+        setUserLogin={props.setUserLogin}
+        errorLogin={props.errorLogin}
+    />
 }

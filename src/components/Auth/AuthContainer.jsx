@@ -20,7 +20,8 @@ class AuthContainer extends React.Component {
 let mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
-    photoURL: state.auth.userPhoto
+    photoURL: state.auth.userPhoto,
+    errorAuth: state.auth.errorAuth
 })
 
 export default connect(
