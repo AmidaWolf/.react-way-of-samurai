@@ -6,6 +6,7 @@ import {messagesReducer} from "./messages-reducer";
 import {navigationReducer} from "./navigation-reducer";
 import {usersReducer} from "./users-reducer";
 import {authReducer} from "./auth-reducer";
+import {appReducer} from "./app-reducer";
 
 
 let reducers = combineReducers({
@@ -13,7 +14,8 @@ let reducers = combineReducers({
     messagesPage : messagesReducer,
     navigationBlock : navigationReducer,
     usersPage : usersReducer,
-    auth : authReducer
+    auth : authReducer,
+    app : appReducer
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

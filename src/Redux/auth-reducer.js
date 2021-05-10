@@ -90,7 +90,7 @@ export const setLogoutError = (errorLogout) => {
 
 export const getAuthUserData = () => (dispatch) => {
     dispatch(setAuthError(null));
-    authMe().then(response => {
+    return authMe().then(response => {
         if (response.resultCode === 0) {
             let {id, email, login} = response.data;
             dispatch(setUserData(id, email, login, true));
