@@ -4,10 +4,10 @@ import style from './UserInfo.module.css';
 import Preloader from "../../Preloader/Preloader";
 import UserContacts from "./UserContacts/UserContacts";
 import UserJob from "./UserJob/UserJob";
-import UserStatus from "./UserStatus/UserStatus";
+import UserStatusHooks from "./UserStatus/UserStatusHooks";
 
 const UserInfo = (props) => {
-    if (!props.profile) {
+    if (!props.profile || props.isUpdate) {
         return(
             <Preloader />
         )
@@ -25,7 +25,7 @@ const UserInfo = (props) => {
             />
             <div className={style.text}>
                 <h2 className={style.username}>{props.profile.fullName}</h2>
-                <UserStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                <UserStatusHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
                 <p>About me: </p>
                 <p>
                     {

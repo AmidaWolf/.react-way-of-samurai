@@ -3,8 +3,9 @@ import {getStatus, getUser, updateStatus} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_IS_FETCHING = 'SET_IS_FETCHING';
 const SET_STATUS = 'SET_STATUS';
+const SET_IS_UPDATE = 'SET_IS_UPDATE';
+
 
 let initialState = {
     postData: [
@@ -13,7 +14,8 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
-    status: ''
+    status: '',
+    isUpdate: false
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -44,10 +46,10 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile : action.profile
             };
-        case SET_IS_FETCHING:
+        case SET_IS_UPDATE:
             return{
                 ...state,
-                isFetching: action.status
+                isUpdate: action.status
             }
         case SET_STATUS:
             return{
@@ -75,17 +77,19 @@ export const updNewPostTextActionCreator = (text) => {
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
-export const setIsFetching = (status) => {
+export const setIsUpdate = (status) => {
     return {
-        type: SET_IS_FETCHING,
+        type: SET_IS_UPDATE,
         status: status
     }
 }
 
 export const getUserInfo = (id) => {
     return (dispatch) => {
+        dispatch(setIsUpdate(true));
         getUser(id).then(response => {
             dispatch(setUserProfile(response));
+            dispatch(setIsUpdate(false));
         })
     }
 }
@@ -102,8 +106,10 @@ export const getUserStatus = (id) => {
         if (id === undefined) {
             id = 16379;
         }
+        dispatch(setIsUpdate(true));
         getStatus(id).then(response => {
             dispatch(setUserStatus(response));
+            dispatch(setIsUpdate(false));
         })
     }
 }
@@ -114,7 +120,6 @@ export const updateUserStatus = (text) => {
             if(response.data.resultCode === 0) {
                 dispatch(setUserStatus(text));
             }
-
         })
     }
 }

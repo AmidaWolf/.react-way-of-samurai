@@ -12,6 +12,7 @@ const Profile = (props) => {
                 profile={props.profile}
                 status={props.status}
                 updateUserStatus={props.updateUserStatus}
+                isUpdate={props.isUpdate}
             />
             <Posts />
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 
@@ -6,34 +6,34 @@ import Profile from "./Profile";
 import {getUserInfo, getUserStatus, updateUserStatus} from "../../Redux/profile-reducer";
 import {withAuthRedirect} from "../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getIdSelector,
+    getIsUpdateSelector,
+    getProfileSelector,
+    getStatusSelector
+} from "../../Redux/users-selector";
 
 
-class ProfileContainer extends React.Component {
-    componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId) {
-            userId = this.props.id;
-        }
-        this.props.getUserInfo(userId);
-        this.props.getUserStatus(userId);
+function ProfileContainer(props) {
+    let userId = props.match.params.userId;
+    if (!userId) {
+        userId = props.id;
     }
 
-    render() {
-        return (
-            <>
-                <Profile {...this.props}
-                />
-            </>
-        )
-    }
+    useEffect(() =>{
+        props.getUserInfo(userId);
+        props.getUserStatus(userId);
+    },[userId])
+
+    return <Profile {...props}/>
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    id: state.auth.id
+    profile: getProfileSelector(state),
+    status: getStatusSelector(state),
+    id: getIdSelector(state),
+    isUpdate: getIsUpdateSelector(state)
 })
-
 
 export default compose(
     connect(
@@ -43,4 +43,3 @@ export default compose(
     withRouter,
     withAuthRedirect
 )(ProfileContainer);
-
