@@ -5,7 +5,7 @@ import UserInfo from "./UserInfo/UserInfo";
 import Posts from "./Posts/Posts";
 
 
-const Profile = (props) => {
+const Profile = React.memo ((props) => {
     return(
         <div>
             <UserInfo
@@ -17,6 +17,6 @@ const Profile = (props) => {
             <Posts />
         </div>
     )
-}
+})
 
 export default Profile;

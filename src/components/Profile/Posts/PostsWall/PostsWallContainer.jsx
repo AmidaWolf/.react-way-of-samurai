@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 
 import PostsWall from "./PostsWall";
+import {deletePostActionCreator} from "../../../../Redux/profile-reducer";
 
 const mapStateToProps = (props) => {
     return {
@@ -8,6 +9,6 @@ const mapStateToProps = (props) => {
     }
 }
 
-const PostsWallContainer = connect(mapStateToProps) (PostsWall);
+const PostsWallContainer = connect(mapStateToProps, {deletePostActionCreator}) (PostsWall);
 
 export default PostsWallContainer;

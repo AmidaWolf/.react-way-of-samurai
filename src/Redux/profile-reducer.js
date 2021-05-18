@@ -1,6 +1,7 @@
 import {getStatus, getUser, updateStatus} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
+const DEL_POST = 'DEL-POST';
 const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
@@ -10,7 +11,16 @@ const SET_IS_UPDATE = 'SET_IS_UPDATE';
 let initialState = {
     postData: [
         {id: 0, text: 'Hi everyone', likes: 5},
-        {id: 1, text: 'What\'s next?', likes: 3}
+        {id: 1, text: 'What\'s next?', likes: 3},
+        {id: 2, text: 'For all values other than auto and content (defined above), ' +
+                'flex-basis is resolved the same way as width in horizontal ' +
+                'writing modes [CSS21], except that if a value would resolve ' +
+                'to auto for width, it instead resolves to content for flex-basis. ' +
+                'For example, percentage values of flex-basis are resolved against ' +
+                'the flex item’s containing block (i.e. its flex container); and if that ' +
+                'containing block’s size is indefinite, the used value for flex-basis is content. ' +
+                'As another corollary, flex-basis determines the size of the content box, ' +
+                'unless otherwise specified such as by box-sizing [CSS3UI].', likes: 900000}
     ],
     newPostText: '',
     profile: null,
@@ -21,8 +31,7 @@ let initialState = {
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            let lastElement = state.postData.length;
-            let newID = lastElement + 1;
+            let newID = state.postData.length;
             let newPost = {
                 id: newID,
                 text: state.newPostText,
@@ -32,6 +41,12 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText : '',
                 postData : [...state.postData, newPost]
+            };
+
+        case DEL_POST:
+            return  {
+                ...state,
+                postData : state.postData.filter(el => el.id !== action.id)
             };
 
 
@@ -68,6 +83,14 @@ export const addPostActionCreator = () => {
         type: ADD_POST
     }
 }
+
+export const deletePostActionCreator = (id) => {
+    return {
+        type: DEL_POST,
+        id
+    }
+}
+
 export const updNewPostTextActionCreator = (text) => {
     return {
         type: UPD_NEW_POST_TEXT,
