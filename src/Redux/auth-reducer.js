@@ -1,11 +1,11 @@
 import {authMe, getUser, loginMe, logoutMe} from "../api/api";
 
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_USER_PHOTO = 'SET_USER_PHOTO';
-const SET_AUTH_ERROR = 'SET_AUTH_ERROR';
-const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
-const SET_LOGOUT_ERROR = 'SET_LOGOUT_ERROR';
+const SET_USER_DATA = 'auth/SET_USER_DATA';
+const SET_USER_PHOTO = 'auth/SET_USER_PHOTO';
+const SET_AUTH_ERROR = 'auth/SET_AUTH_ERROR';
+const SET_LOGIN_ERROR = 'auth/SET_LOGIN_ERROR';
+const SET_LOGOUT_ERROR = 'auth/SET_LOGOUT_ERROR';
 
 let initialState = {
     id: null,
@@ -88,39 +88,36 @@ export const setLogoutError = (errorLogout) => {
     }
 }
 
-export const getAuthUserData = () => (dispatch) => {
+export const getAuthUserData = () => async (dispatch) => {
     dispatch(setAuthError(null));
-    return authMe().then(response => {
-        if (response.resultCode === 0) {
-            let {id, email, login} = response.data;
-            dispatch(setUserData(id, email, login, true));
-            getUser(id).then(response => {
-                dispatch(setUserPhoto(response.photos.small));
-            })
-        } else {
-            dispatch(setAuthError(response.messages));
-        }
-    })
+    let response = await authMe();
+    if (response.resultCode === 0) {
+        let {id, email, login} = response.data;
+        dispatch(setUserData(id, email, login, true));
+        getUser(id).then(response => {
+            dispatch(setUserPhoto(response.photos.small));
+        })
+    } else {
+        dispatch(setAuthError(response.messages));
+    }
 }
 
-export const setUserLogin = (data) => (dispatch) => {
+export const setUserLogin = (data) => async (dispatch) => {
     dispatch(setLoginError(null));
-    loginMe(data).then(response => {
-        if (response.resultCode === 0) {
-            dispatch(getAuthUserData())
-        } else {
-            dispatch(setLoginError(response.messages));
-        }
-    })
+    let response = await loginMe(data)
+    if (response.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
+        dispatch(setLoginError(response.messages));
+    }
 }
 
-export const setUserLogout = () => (dispatch) => {
+export const setUserLogout = () => async (dispatch) => {
     dispatch(setLogoutError(null));
-    logoutMe().then(response => {
-        if (response.resultCode === 0) {
-            dispatch(setUserData(null, null, null, false))
-        } else {
-            dispatch(setLogoutError(response.messages));
-        }
-    })
+    let response = await logoutMe()
+    if (response.resultCode === 0) {
+        dispatch(setUserData(null, null, null, false))
+    } else {
+        dispatch(setLogoutError(response.messages));
+    }
 }

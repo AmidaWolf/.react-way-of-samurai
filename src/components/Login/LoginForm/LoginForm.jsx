@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import style from "../Login.module.css";
 
 
-export const LoginForm = (props) => {
+export const LoginForm = ({setUserLogin, errorLogin}) => {
     const validation = Yup.object({
         email: Yup
             .string()
@@ -17,7 +17,7 @@ export const LoginForm = (props) => {
     })
 
     const submit = (values, {setSubmitting}) => {
-        props.setUserLogin(values)
+        setUserLogin(values)
         setSubmitting(false);
     }
 
@@ -63,8 +63,8 @@ export const LoginForm = (props) => {
                             Login
                         </button>
                         {
-                            props.errorLogin ?
-                                <p className={style.error_login}>Error: {props.errorLogin}</p> :
+                            errorLogin ?
+                                <p className={style.error_login}>Error: {errorLogin}</p> :
                                 null
                         }
                     </Form>

@@ -1,13 +1,14 @@
 import React from 'react';
 
 import style from './UserInfo.module.css';
+import avatar from '../../../img/120&text=avatar.png';
 import Preloader from "../../Preloader/Preloader";
 import UserContacts from "./UserContacts/UserContacts";
 import UserJob from "./UserJob/UserJob";
 import UserStatusHooks from "./UserStatus/UserStatusHooks";
 
-const UserInfo = (props) => {
-    if (!props.profile || props.isUpdate) {
+const UserInfo = ({profile, status, updateUserStatus, isUpdate}) => {
+    if (!profile || isUpdate) {
         return(
             <Preloader />
         )
@@ -18,26 +19,26 @@ const UserInfo = (props) => {
             <img
                 className={style.avatar}
                 src={
-                props.profile.photos.large != null
-                    ? props.profile.photos.large : "https://dummyimage.com/120&text=avatar"
+                profile.photos.large !== null
+                    ? profile.photos.large : avatar
                 }
                 alt="avatar"
             />
             <div className={style.text}>
-                <h2 className={style.username}>{props.profile.fullName}</h2>
-                <UserStatusHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
+                <h2 className={style.username}>{profile.fullName}</h2>
+                <UserStatusHooks status={status} updateUserStatus={updateUserStatus}/>
                 <p>About me: </p>
                 <p>
                     {
-                        props.profile.aboutMe != null ?
-                            props.profile.aboutMe :
+                        profile.aboutMe != null ?
+                            profile.aboutMe :
                             'User dont write about himself'
                     }
                 </p>
-                <UserContacts contacts={props.profile.contacts}/>
+                <UserContacts contacts={profile.contacts}/>
                 <UserJob
-                    lookingForAJob={props.profile.lookingForAJob}
-                    description={props.profile.lookingForAJobDescription}
+                    lookingForAJob={profile.lookingForAJob}
+                    description={profile.lookingForAJobDescription}
                 />
             </div>
         </div>

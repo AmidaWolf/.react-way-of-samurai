@@ -4,9 +4,9 @@ import style from './OnlineFriends.module.css';
 import OnlineFriend from "./OnlineFriend/OnlineFriend";
 
 
-const OnlineFriends = (props) => {
+const OnlineFriends = ({onlineFriends}) => {
 
-    let OnlineFriendItem = props.onlineFriends.map((el) => {
+    let OnlineFriendItem = onlineFriends.map((el) => {
         return <OnlineFriend name={el.name} id={el.id} key={el.id}/>
     })
 

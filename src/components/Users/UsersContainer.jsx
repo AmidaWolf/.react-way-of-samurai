@@ -14,8 +14,9 @@ import Preloader from "../Preloader/Preloader";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        if (this.props.users.length === 0) {
-            this.props.getUsers(1);
+        let {users, getUsers} = this.props;
+        if (users.length === 0) {
+            getUsers(1);
         }
     }
 
@@ -23,15 +24,7 @@ class UsersContainer extends React.Component {
         return (
             <>
                 {this.props.isFetching ? <Preloader /> : null}
-                <Users
-                    users={this.props.users}
-                    page={this.props.page}
-                    pageSize={this.props.pageSize}
-                    totalUsersCount={this.props.totalUsersCount}
-                    followInProgress={this.props.followInProgress}
-
-                    getUsers={this.props.getUsers}
-                    toggleFollowUser={this.props.toggleFollowUser}
+                <Users {...this.props}
                 />
             </>
         )

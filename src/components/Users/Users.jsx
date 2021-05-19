@@ -5,8 +5,8 @@ import User from "./User/User";
 import Paginator from "./Paginator/Paginator";
 
 
- let Users = (props) => {
-     let UsersList = props.users.map((el) => {
+ let Users = ({users, followInProgress, toggleFollowUser, page, pageSize, totalUsersCount, getUsers}) => {
+     let UsersList = users.map((el) => {
          return <User
              id={el.id}
              photoUrl={el.photos.small}
@@ -14,10 +14,8 @@ import Paginator from "./Paginator/Paginator";
              followed={el.followed}
              status={el.status}
              key={el.id}
-             followInProgress={props.followInProgress}
-
-             toggleFollowUser={props.toggleFollowUser}
-
+             followInProgress={followInProgress}
+             toggleFollowUser={toggleFollowUser}
          />
      })
 
@@ -27,12 +25,12 @@ import Paginator from "./Paginator/Paginator";
                  {UsersList}
              </ul>
              <Paginator
-                 users={props.users}
-                 page={props.page}
-                 pageSize={props.pageSize}
-                 totalUsersCount={props.totalUsersCount}
+                 users={users}
+                 page={page}
+                 pageSize={pageSize}
+                 totalUsersCount={totalUsersCount}
 
-                 getUsers={props.getUsers}
+                 getUsers={getUsers}
              />
          </div>
      )

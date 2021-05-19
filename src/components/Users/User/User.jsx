@@ -2,39 +2,41 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 
 import style from './User.module.css';
+import avatar from '../../../img/120&text=avatar.png';
 
 
-const User = (props) => {
+const User = ({id, photoUrl, followInProgress, followed, toggleFollowUser, name, status}) => {
     return(
         <li className={style.user_wrapper}>
             <div className={style.user}>
                 <div className={style.avatar_button}>
-                    <NavLink className={style.user_href} to={'/profile/' + props.id}>
+                    <NavLink className={style.user_href} to={'/profile/' + id}>
                         <img
                             className={style.avatar}
                             src={
-                                props.photoUrl != null
-                                    ? props.photoUrl : "https://dummyimage.com/120&text=avatar"}
+                                photoUrl !== null
+                                    ? photoUrl : avatar
+                            }
                             alt="avatar"/>
                     </NavLink>
                     <div>
                         <button
-                            disabled={props.followInProgress.some(id => id === props.id)}
+                            disabled={followInProgress.some(followId => followId === id)}
                             className={style.follow_button}
                             onClick={() => {
-                                props.toggleFollowUser(props.id, props.followed);
+                                toggleFollowUser(id, followed);
                             }}>
-                            {!props.followed ? 'Follow' : 'Unfollow'}
+                            {!followed ? 'Follow' : 'Unfollow'}
                         </button>
                     </div>
                 </div>
                 <div className={style.user_info_wrapper}>
                     <div className={style.user_info}>
-                        <NavLink className={style.user_href} to={'/profile/' + props.id} >
-                            <h3 className={style.user_name}>{props.name}</h3>
+                        <NavLink className={style.user_href} to={'/profile/' + id} >
+                            <h3 className={style.user_name}>{name}</h3>
                         </NavLink>
                     </div>
-                    <p className={style.text}>{props.status}</p>
+                    <p className={style.text}>{status}</p>
                 </div>
             </div>
         </li>

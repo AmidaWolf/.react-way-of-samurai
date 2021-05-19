@@ -5,13 +5,13 @@ import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 
 
-const Dialogs = (props) => {
+const Dialogs = ({userDialogs, isAuth}) => {
 
-    let UserDialogs = props.userDialogs.map((el) => {
+    let UserDialogs = userDialogs.map((el) => {
         return <DialogItem name={el.name} id={el.id} key={el.id}/>
     })
 
-    if(!props.isAuth) {
+    if(!isAuth) {
         return <Redirect to={'/login'}/>
     }
 

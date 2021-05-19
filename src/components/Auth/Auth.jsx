@@ -2,23 +2,24 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 
 import style from "../Auth/Auth.module.css";
+import avatar from '../../img/60&text=avatar.png';
 
 
-const Auth = (props) => {
+const Auth = ({isAuth, login, photoURL, setUserLogout}) => {
     return (
         <div className={style.auth_wrapper}>
             {
-                props.isAuth ?
+                isAuth ?
                     <NavLink className={style.link} to={'/profile'}>
                         <div className={style.auth}>
-                            <p className={style.profile}>{props.login}</p>
+                            <p className={style.profile}>{login}</p>
                             <img className={style.logo}
                                  src={
-                                     props.photoURL != null
-                                         ? props.photoURL :
-                                         "https://dummyimage.com/60&text=avatar"
+                                     photoURL != null
+                                         ? photoURL :
+                                         avatar
                                  } alt="logged user"/>
-                            <button className={style.logout} onClick={props.setUserLogout} type={'button'}>Logout</button>
+                            <button className={style.logout} onClick={setUserLogout} type={'button'}>Logout</button>
                         </div>
                     </NavLink>
                      :

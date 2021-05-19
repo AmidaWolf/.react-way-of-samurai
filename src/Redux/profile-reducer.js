@@ -1,11 +1,11 @@
 import {getStatus, getUser, updateStatus} from "../api/api";
 
-const ADD_POST = 'ADD-POST';
-const DEL_POST = 'DEL-POST';
-const UPD_NEW_POST_TEXT = 'UPD-NEW-POST-TEXT';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const SET_IS_UPDATE = 'SET_IS_UPDATE';
+const ADD_POST = 'profile/ADD-POST';
+const DEL_POST = 'profile/DEL-POST';
+const UPD_NEW_POST_TEXT = 'profile/UPD-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
+const SET_IS_UPDATE = 'profile/SET_IS_UPDATE';
 
 
 let initialState = {
@@ -77,7 +77,6 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
-
 export const addPostActionCreator = () => {
     return {
         type: ADD_POST
@@ -103,17 +102,7 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setIsUpdate = (status) => {
     return {
         type: SET_IS_UPDATE,
-        status: status
-    }
-}
-
-export const getUserInfo = (id) => {
-    return (dispatch) => {
-        dispatch(setIsUpdate(true));
-        getUser(id).then(response => {
-            dispatch(setUserProfile(response));
-            dispatch(setIsUpdate(false));
-        })
+        status
     }
 }
 
@@ -124,25 +113,27 @@ export const setUserStatus = (text) => {
     }
 }
 
-export const getUserStatus = (id) => {
-    return (dispatch) => {
-        if (id === undefined) {
-            id = 16379;
-        }
-        dispatch(setIsUpdate(true));
-        getStatus(id).then(response => {
-            dispatch(setUserStatus(response));
-            dispatch(setIsUpdate(false));
-        })
+export const getUserInfo = (id) => async (dispatch) => {
+    dispatch(setIsUpdate(true));
+    let response = await getUser(id)
+    dispatch(setUserProfile(response));
+    dispatch(setIsUpdate(false));
+}
+
+export const getUserStatus = (id) => async (dispatch) => {
+    if (id === undefined) {
+        id = 16379;
+    }
+    dispatch(setIsUpdate(true));
+    let response = await getStatus(id)
+    dispatch(setUserStatus(response));
+    dispatch(setIsUpdate(false));
+}
+
+export const updateUserStatus = (text) => async (dispatch) => {
+    let response = await updateStatus(text)
+    if (response.data.resultCode === 0) {
+        dispatch(setUserStatus(text));
     }
 }
 
-export const updateUserStatus = (text) => {
-    return (dispatch) => {
-        updateStatus(text).then(response => {
-            if(response.data.resultCode === 0) {
-                dispatch(setUserStatus(text));
-            }
-        })
-    }
-}

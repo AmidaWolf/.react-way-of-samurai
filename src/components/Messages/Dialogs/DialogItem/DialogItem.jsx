@@ -3,10 +3,10 @@ import {NavLink} from "react-router-dom";
 
 import style from './DialogItem.module.css';
 
-const DialogItem = (props) => {
+const DialogItem = ({id, name}) => {
     return(
         <li className={style.itemLink}>
-            <NavLink to={"/messages/" + props.id}>{props.name}</NavLink>
+            <NavLink to={"/messages/" + id}>{name}</NavLink>
         </li>
     )
 }

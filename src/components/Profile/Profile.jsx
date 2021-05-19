@@ -5,14 +5,14 @@ import UserInfo from "./UserInfo/UserInfo";
 import Posts from "./Posts/Posts";
 
 
-const Profile = React.memo ((props) => {
+const Profile = React.memo (({profile, status, updateUserStatus, isUpdate}) => {
     return(
         <div>
             <UserInfo
-                profile={props.profile}
-                status={props.status}
-                updateUserStatus={props.updateUserStatus}
-                isUpdate={props.isUpdate}
+                profile={profile}
+                status={status}
+                updateUserStatus={updateUserStatus}
+                isUpdate={isUpdate}
             />
             <Posts />
         </div>

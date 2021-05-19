@@ -5,8 +5,6 @@ import {sendMessageActionCreator,
     updNewMessageTextActionCreator} from "../../../../../Redux/messages-reducer";
 
 
-
-
 const mapStateToProps = (state) => {
     return {
         newMessageText : state.messagesPage.newMessageText

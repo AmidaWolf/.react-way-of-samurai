@@ -2,15 +2,15 @@ import React from 'react';
 
 import style from './WriteMessage.module.css';
 
-const WriteMessage = (props) => {
+const WriteMessage = ({addMessage, messageChange, newMessageText}) => {
 
     let onAddMessage = () => {
-        props.addMessage();
+        addMessage();
     }
 
     let onMessageChange = (event) => {
         let text = event.target.value;
-        props.messageChange(text);
+        messageChange(text);
     }
 
     return (
@@ -19,7 +19,7 @@ const WriteMessage = (props) => {
                 onChange={onMessageChange}
                 rows="2"
                 placeholder="write your message"
-                value={props.newMessageText} />
+                value={newMessageText} />
             <button onClick={onAddMessage}>Send</button>
         </div>
     )

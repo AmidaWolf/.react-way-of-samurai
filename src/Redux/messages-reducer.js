@@ -1,5 +1,5 @@
-const SEND_MESSAGE = 'ADD-MESSAGE';
-const UPD_NEW_MESSAGE_TEXT = 'UPD-NEW-MESSAGE';
+const SEND_MESSAGE = 'messages/ADD-MESSAGE';
+const UPD_NEW_MESSAGE_TEXT = 'messages/UPD-NEW-MESSAGE';
 
 let initialState = {
     textData: [

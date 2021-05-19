@@ -5,9 +5,9 @@ import Message from "./Message/Message";
 import WriteMessageContainer from "./WriteMessage/WriteMessageContainer";
 
 
-const Dialog = (props) => {
+const Dialog = ({textData}) => {
 
-    let Messages = props.textData.map((el) => {
+    let Messages = textData.map((el) => {
     return <Message name={el.name} text={el.text} key={el.id}/>
 })
 

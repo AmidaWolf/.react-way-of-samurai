@@ -4,12 +4,12 @@ import {Redirect} from "react-router-dom";
 import {LoginForm} from "./LoginForm/LoginForm";
 
 
-export const Login = (props) => {
-    if (props.isAuth) {
+export const Login = ({isAuth, setUserLogin, errorLogin}) => {
+    if (isAuth) {
         return <Redirect to={'/profile'} />
     }
     return <LoginForm
-        setUserLogin={props.setUserLogin}
-        errorLogin={props.errorLogin}
+        setUserLogin={setUserLogin}
+        errorLogin={errorLogin}
     />
 }

@@ -3,17 +3,17 @@ import React from 'react';
 import style from './Paginator.module.css';
 
 
-let Paginator = (props) => {
+let Paginator = ({totalUsersCount, pageSize, getUsers, page}) => {
     let pages = [];
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
     let PagesList = pages.map((el) => {
         return <span
-            onClick={()=>{props.getUsers(el)}}
+            onClick={()=>{getUsers(el)}}
             key={el}
-            className={props.page === el ? style.selected_page : style.page}>
+            className={page === el ? style.selected_page : style.page}>
             {el}
         </span>;
     })
