@@ -28,7 +28,7 @@ import Paginator from "./Paginator/Paginator";
                  users={users}
                  page={page}
                  pageSize={pageSize}
-                 totalUsersCount={totalUsersCount}
+                 totalItemsCount={totalUsersCount}
 
                  getUsers={getUsers}
              />

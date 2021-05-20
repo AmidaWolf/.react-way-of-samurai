@@ -11,7 +11,7 @@ const SET_FOLLOW_IN_PROGRESS = 'users/SET_FOLLOW_IN_PROGRESS';
 
 let initialState = {
     users: [],
-    page: 0,
+    page: 1,
     pageSize: 10,
     totalUsersCount: 0,
     isFetching: false,
