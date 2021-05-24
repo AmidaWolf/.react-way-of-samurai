@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import {connect} from "react-redux";
 
 import './App.css';
@@ -27,7 +27,7 @@ class App extends React.Component {
         return (
             !this.props.initialized ?
             <Preloader /> :
-            <BrowserRouter>
+            <HashRouter>
                 <div className={'wrapper'}>
                     <Header/>
 
@@ -61,7 +61,7 @@ class App extends React.Component {
                         />
                     </div>
                 </div>
-            </BrowserRouter>
+            </HashRouter>
 
         );
     }

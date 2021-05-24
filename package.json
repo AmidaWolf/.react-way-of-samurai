@@ -1,6 +1,7 @@
 {
-  "name": "test_project",
-  "version": "0.1.0",
+  "name": "social_network",
+  "version": "0.9.0",
+  "homepage": "https://amidawolf.github.io/.react-way-of-samurai",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -8,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
     "formik": "^2.2.6",
+    "gh-pages": "^3.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^7.4.0",
@@ -20,6 +22,8 @@
     "yup": "^0.32.9"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
