@@ -29,8 +29,8 @@ const UserStatusHooks = (props) => {
             <div className={style.userStatusWrapper}>
                 {!editMode ?
                     <div>
-                        <span className={style.statusText}
-                            onClick={activateEditMode}>
+                        <span className={props.isOwner ? style.statusText : style.otherStatusText}
+                            onClick={props.isOwner ? activateEditMode : null}>
                             {!props.status ? 'Write u\'r status' : props.status}
                         </span>
                     </div> :

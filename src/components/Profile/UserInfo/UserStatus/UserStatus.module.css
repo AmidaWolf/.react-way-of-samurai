@@ -6,3 +6,8 @@
 .statusText {
     cursor: pointer;
 }
+
+.otherStatusText {
+    cursor: default;
+}
+

@@ -1,4 +1,4 @@
-import {getStatus, getUser, updateStatus} from "../api/api";
+import {getStatus, getUser, updateStatus, uploadAvatar} from "../api/api";
 
 const ADD_POST = 'profile/ADD-POST';
 const DEL_POST = 'profile/DEL-POST';
@@ -6,6 +6,7 @@ const UPD_NEW_POST_TEXT = 'profile/UPD-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const SET_IS_UPDATE = 'profile/SET_IS_UPDATE';
+const SET_AVATAR_SUCCESS = 'profile/SET_AVATAR_SUCCESS';
 
 
 let initialState = {
@@ -61,15 +62,23 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile : action.profile
             };
+
         case SET_IS_UPDATE:
             return{
                 ...state,
                 isUpdate: action.status
             }
+
         case SET_STATUS:
             return{
                 ...state,
                 status: action.text
+            }
+
+        case SET_AVATAR_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
             }
         default:
             return state;
@@ -99,6 +108,8 @@ export const updNewPostTextActionCreator = (text) => {
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
+export const uploadAvatarSuccess = (photos) => ({type: SET_AVATAR_SUCCESS, photos})
+
 export const setIsUpdate = (status) => {
     return {
         type: SET_IS_UPDATE,
@@ -109,7 +120,7 @@ export const setIsUpdate = (status) => {
 export const setUserStatus = (text) => {
     return {
         type: SET_STATUS,
-        text: text
+        text
     }
 }
 
@@ -136,4 +147,17 @@ export const updateUserStatus = (text) => async (dispatch) => {
         dispatch(setUserStatus(text));
     }
 }
+
+export const changeAvatar = (photo) => async (dispatch) => {
+    dispatch(setIsUpdate(true));
+    let response = await uploadAvatar(photo)
+    if (response.data.resultCode === 0) {
+        dispatch(uploadAvatarSuccess(response.data.data.photos));
+    }
+    dispatch(setIsUpdate(false));
+}
+
+
+
+
 

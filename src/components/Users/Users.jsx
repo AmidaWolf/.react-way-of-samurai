@@ -5,7 +5,10 @@ import User from "./User/User";
 import Paginator from "./Paginator/Paginator";
 
 
- let Users = ({users, followInProgress, toggleFollowUser, page, pageSize, totalUsersCount, getUsers}) => {
+ let Users = ({users, followInProgress,
+                  toggleFollowUser, page,
+                  pageSize, totalUsersCount,
+                  getUsers, isAuth}) => {
      let UsersList = users.map((el) => {
          return <User
              id={el.id}
@@ -14,6 +17,7 @@ import Paginator from "./Paginator/Paginator";
              followed={el.followed}
              status={el.status}
              key={el.id}
+             isAuth={isAuth}
              followInProgress={followInProgress}
              toggleFollowUser={toggleFollowUser}
          />

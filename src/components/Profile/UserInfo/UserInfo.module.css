@@ -16,9 +16,33 @@
     height: 110px;
 }
 
-.avatar {
+.avatarWrapper {
     margin-left: 10px;
     grid-area: avatar;
+}
+
+.avatar {
+    cursor: pointer;
+}
+
+.avatarInput {
+    display: none;
+}
+
+.button {
+    display: block;
+    width: auto;
+    height: auto;
+    border: 4px solid #fff;
+    border-radius: 0;
+    cursor: pointer;
+    background-color: #ccc;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.otherAvatar {
+    cursor: default;
 }
 
 .text {

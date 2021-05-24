@@ -3,7 +3,12 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router";
 
 import Profile from "./Profile";
-import {getUserInfo, getUserStatus, updateUserStatus} from "../../Redux/profile-reducer";
+import {
+    changeAvatar,
+    getUserInfo,
+    getUserStatus,
+    updateUserStatus
+} from "../../Redux/profile-reducer";
 import {withAuthRedirect} from "../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
@@ -25,7 +30,7 @@ function ProfileContainer(props) {
         props.getUserStatus(userId);
     },[userId])
 
-    return <Profile {...props}/>
+    return <Profile {...props} isOwner={!props.match.params.userId}/>
 }
 
 let mapStateToProps = (state) => ({
@@ -38,7 +43,7 @@ let mapStateToProps = (state) => ({
 export default compose(
     connect(
         mapStateToProps,
-        {getUserInfo, getUserStatus, updateUserStatus}
+        {getUserInfo, getUserStatus, updateUserStatus, changeAvatar}
     ),
     withRouter,
     withAuthRedirect

@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom"; //only for github-pages, for production use BrowserRouter
 import {connect} from "react-redux";
 
 import './App.css';

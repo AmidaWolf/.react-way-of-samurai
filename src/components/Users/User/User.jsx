@@ -5,7 +5,7 @@ import style from './User.module.css';
 import avatar from '../../../img/120&text=avatar.png';
 
 
-const User = ({id, photoUrl, followInProgress, followed, toggleFollowUser, name, status}) => {
+const User = ({id, photoUrl, followInProgress, followed, toggleFollowUser, name, status, isAuth}) => {
     return(
         <li className={style.user_wrapper}>
             <div className={style.user}>
@@ -20,14 +20,17 @@ const User = ({id, photoUrl, followInProgress, followed, toggleFollowUser, name,
                             alt="avatar"/>
                     </NavLink>
                     <div>
-                        <button
-                            disabled={followInProgress.some(followId => followId === id)}
-                            className={style.follow_button}
-                            onClick={() => {
-                                toggleFollowUser(id, followed);
-                            }}>
-                            {!followed ? 'Follow' : 'Unfollow'}
-                        </button>
+                        {
+                            isAuth ?
+                                <button
+                                    disabled={followInProgress.some(followId => followId === id)}
+                                    className={style.follow_button}
+                                    onClick={() => {
+                                        toggleFollowUser(id, followed);
+                                    }}>
+                                    {!followed ? 'Follow' : 'Unfollow'}
+                                </button> : null
+                        }
                     </div>
                 </div>
                 <div className={style.user_info_wrapper}>

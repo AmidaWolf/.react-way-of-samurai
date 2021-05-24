@@ -71,3 +71,11 @@ export const logoutMe = () => {
             .then(response => response.data)
     )
 }
+
+export const uploadAvatar = (image) => {
+    let formData = new FormData();
+    formData.append('image', image)
+    return (
+        instance.put('/profile/photo', formData)
+    )
+}

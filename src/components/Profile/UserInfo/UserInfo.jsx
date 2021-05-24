@@ -7,26 +7,53 @@ import UserContacts from "./UserContacts/UserContacts";
 import UserJob from "./UserJob/UserJob";
 import UserStatusHooks from "./UserStatus/UserStatusHooks";
 
-const UserInfo = ({profile, status, updateUserStatus, isUpdate}) => {
+const UserInfo = ({profile, status,
+                      updateUserStatus, isUpdate,
+                      isOwner, changeAvatar}) => {
     if (!profile || isUpdate) {
         return(
             <Preloader />
         )
     }
 
+    const onNewAvatarSelected = (e) => {
+        if (e.target.files.length) {
+            changeAvatar(e.target.files[0])
+        }
+    }
+
     return(
         <div className={style.info}>
-            <img
-                className={style.avatar}
-                src={
-                profile.photos.large !== null
-                    ? profile.photos.large : avatar
+            <div className={style.avatarWrapper}>
+                <img
+                    className={isOwner ? style.avatar : style.otherAvatar}
+                    src={
+                        profile.photos.large !== null
+                            ? profile.photos.large : avatar
+                    }
+                    alt="avatar"
+                />
+                {
+                    isOwner ?
+                        <>
+                            <input
+                                type={'file'}
+                                name={'avatarFile'}
+                                id={'avatarFile'}
+                                className={style.avatarInput}
+                                onChange={onNewAvatarSelected}
+                            />
+                            <label htmlFor={'avatarFile'} className={style.button}>
+                                Upload new avatar
+                            </label>
+                        </>
+                        : null
                 }
-                alt="avatar"
-            />
+            </div>
+
             <div className={style.text}>
                 <h2 className={style.username}>{profile.fullName}</h2>
-                <UserStatusHooks status={status} updateUserStatus={updateUserStatus}/>
+                <UserStatusHooks status={status} updateUserStatus={updateUserStatus} isOwner={isOwner}/>
                 <p>About me: </p>
                 <p>
                     {

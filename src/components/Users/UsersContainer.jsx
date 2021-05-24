@@ -38,7 +38,8 @@ const mapStateToProps = (state) => {
         pageSize:state.usersPage.pageSize,
         totalUsersCount:state.usersPage.totalUsersCount,
         isFetching: state.usersPage.isFetching,
-        followInProgress: state.usersPage.followInProgress
+        followInProgress: state.usersPage.followInProgress,
+        isAuth: state.auth.isAuth
     }
 }
 
