@@ -5,15 +5,17 @@ import {connect} from "react-redux";
 import './App.css';
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
-import Messages from "./components/Messages/Messages";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/Preloader/Preloader";
+import {withSuspense} from "./components/hoc/WithSuspense";
+
+const Messages = React.lazy(() => import('./components/Messages/Messages'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 
 
 class App extends React.Component {
@@ -33,12 +35,10 @@ class App extends React.Component {
 
                     <div className={'content-wrapper'}>
                         <Route path="/profile/:userId?"
-                               render={() =>
-                                   <ProfileContainer/>}
+                               render={withSuspense(ProfileContainer)}
                         />
                         <Route path="/messages"
-                               render={() =>
-                                   <Messages/>}
+                               render={withSuspense(Messages)}
                         />
                         <Route path="/news"
                                render={() =>
@@ -49,8 +49,7 @@ class App extends React.Component {
                                    <Music/>}
                         />
                         <Route path="/users"
-                               render={() =>
-                                   <UsersContainer/>}
+                               render={withSuspense(UsersContainer)}
                         />
                         <Route path="/settings"
                                render={() =>
