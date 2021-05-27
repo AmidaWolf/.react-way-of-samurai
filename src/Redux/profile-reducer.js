@@ -1,4 +1,5 @@
-import {getStatus, getUser, updateStatus, uploadAvatar} from "../api/api";
+import {getStatus, getUser, updateStatus, uploadAvatar, uploadProfileInfo} from "../api/api";
+
 
 const ADD_POST = 'profile/ADD-POST';
 const DEL_POST = 'profile/DEL-POST';
@@ -7,6 +8,9 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const SET_IS_UPDATE = 'profile/SET_IS_UPDATE';
 const SET_AVATAR_SUCCESS = 'profile/SET_AVATAR_SUCCESS';
+const SET_IS_LOADED = 'SET_IS_LOADED';
+const SET_INFO_ERROR = 'SET_INFO_ERROR';
+const SET_IS_ERROR = 'SET_IS_ERROR';
 
 
 let initialState = {
@@ -26,7 +30,10 @@ let initialState = {
     newPostText: '',
     profile: null,
     status: '',
-    isUpdate: false
+    isUpdate: false,
+    isLoaded: false,
+    errorInfo: null,
+    isError: true,
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -69,6 +76,18 @@ export const profileReducer = (state = initialState, action) => {
                 isUpdate: action.status
             }
 
+        case SET_IS_ERROR:
+            return{
+                ...state,
+                isError: action.status
+            }
+
+        case SET_IS_LOADED:
+            return{
+                ...state,
+                isLoaded: action.status
+            }
+
         case SET_STATUS:
             return{
                 ...state,
@@ -79,6 +98,12 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
+            }
+
+        case SET_INFO_ERROR:
+            return  {
+                ...state,
+                errorInfo: action.errorInfo
             }
         default:
             return state;
@@ -117,10 +142,31 @@ export const setIsUpdate = (status) => {
     }
 }
 
+export const setIsLoaded = (status) => {
+    return {
+        type: SET_IS_LOADED,
+        status
+    }
+}
+
+export const setIsError = (status) => {
+    return {
+        type: SET_IS_ERROR,
+        status
+    }
+}
+
 export const setUserStatus = (text) => {
     return {
         type: SET_STATUS,
         text
+    }
+}
+
+export const setInfoError = (errorInfo) => {
+    return {
+        type: SET_INFO_ERROR,
+        errorInfo
     }
 }
 
@@ -129,6 +175,7 @@ export const getUserInfo = (id) => async (dispatch) => {
     let response = await getUser(id)
     dispatch(setUserProfile(response));
     dispatch(setIsUpdate(false));
+    dispatch(setIsLoaded(true));
 }
 
 export const getUserStatus = (id) => async (dispatch) => {
@@ -155,6 +202,20 @@ export const changeAvatar = (photo) => async (dispatch) => {
         dispatch(uploadAvatarSuccess(response.data.data.photos));
     }
     dispatch(setIsUpdate(false));
+}
+
+export const saveProfile = (profileInfo, id) => async (dispatch) => {
+    dispatch(setInfoError(null));
+    let response = await uploadProfileInfo(profileInfo)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserInfo(id));
+        dispatch(setIsError(false));
+    } else {
+        debugger
+        dispatch(setIsError(true));
+        dispatch(setInfoError(response.data.messages));
+    }
+
 }
 
 

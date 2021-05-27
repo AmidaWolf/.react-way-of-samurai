@@ -1,19 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import style from './UserInfo.module.css';
 import avatar from '../../../img/120&text=avatar.png';
 import Preloader from "../../Preloader/Preloader";
-import UserContacts from "./UserContacts/UserContacts";
-import UserJob from "./UserJob/UserJob";
-import UserStatusHooks from "./UserStatus/UserStatusHooks";
+import UserData from "./UserData/UserData";
+import {ChangeInfoForm} from "./ChangeInfoForm/ChangeInfoForm";
+
 
 const UserInfo = ({profile, status,
                       updateUserStatus, isUpdate,
-                      isOwner, changeAvatar}) => {
+                      isOwner, changeAvatar,
+                      saveProfile,
+                      isError, errorInfo}) => {
+
+    let [editMode, setEditMode] = useState(false);
+
     if (!profile || isUpdate) {
         return(
             <Preloader />
         )
+    }
+
+    const toggleEditMode = (condition) => {
+        setEditMode(condition);
     }
 
     const onNewAvatarSelected = (e) => {
@@ -51,23 +60,29 @@ const UserInfo = ({profile, status,
                 }
             </div>
 
-            <div className={style.text}>
-                <h2 className={style.username}>{profile.fullName}</h2>
-                <UserStatusHooks status={status} updateUserStatus={updateUserStatus} isOwner={isOwner}/>
-                <p>About me: </p>
-                <p>
-                    {
-                        profile.aboutMe != null ?
-                            profile.aboutMe :
-                            'User dont write about himself'
-                    }
-                </p>
-                <UserContacts contacts={profile.contacts}/>
-                <UserJob
-                    lookingForAJob={profile.lookingForAJob}
-                    description={profile.lookingForAJobDescription}
-                />
-            </div>
+            {
+                editMode ?
+                    <ChangeInfoForm
+                        userId={profile.userId}
+                        fullName={profile.fullName}
+                        lookingForAJob={profile.lookingForAJob}
+                        lookingForAJobDescription={profile.lookingForAJobDescription}
+                        contacts={profile.contacts}
+                        toggleEditMode={toggleEditMode}
+                        saveProfile={saveProfile}
+                        isUpdate={isUpdate}
+                        aboutMe={profile.aboutMe}
+                        isError={isError}
+                        errorInfo={errorInfo}
+                    /> :
+                    <UserData profile={profile}
+                              status={status}
+                              updateUserStatus={updateUserStatus}
+                              isOwner={isOwner}
+                              toggleEditMode={toggleEditMode}
+                    />
+            }
+
         </div>
     )
 }

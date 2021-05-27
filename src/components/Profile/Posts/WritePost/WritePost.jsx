@@ -21,7 +21,7 @@ const WritePost = (props) => {
                 rows="2"
                 placeholder="your news..."
                 value={props.newPostText} />
-            <button onClick={onAddPost}>Send</button>
+            <button className={style.button} onClick={onAddPost}>Send</button>
         </div>
     )
 }

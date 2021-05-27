@@ -12,8 +12,8 @@ const instance = axios.create({
 
 export const unfollowUser = (id) => {
     return (
-        instance.delete(`follow/${id}`
-        ).then(response => response.data)
+        instance.delete(`follow/${id}`)
+            .then(response => response.data)
     )
 }
 
@@ -79,3 +79,10 @@ export const uploadAvatar = (image) => {
         instance.put('/profile/photo', formData)
     )
 }
+
+export const uploadProfileInfo = (profileInfo) => {
+    return (
+        instance.put('/profile', profileInfo)
+    )
+}
+

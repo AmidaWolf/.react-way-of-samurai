@@ -7,7 +7,9 @@ import Posts from "./Posts/Posts";
 
 const Profile = React.memo (({profile, status,
                                  updateUserStatus, isUpdate,
-                                 isOwner, changeAvatar}) => {
+                                 isOwner, changeAvatar,
+                                 saveProfile,
+                                 isError, errorInfo}) => {
     return(
         <div>
             <UserInfo
@@ -17,6 +19,9 @@ const Profile = React.memo (({profile, status,
                 isUpdate={isUpdate}
                 isOwner={isOwner}
                 changeAvatar={changeAvatar}
+                saveProfile={saveProfile}
+                isError={isError}
+                errorInfo={errorInfo}
             />
             <Posts />
         </div>

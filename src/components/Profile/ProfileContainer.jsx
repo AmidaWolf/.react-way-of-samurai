@@ -7,19 +7,21 @@ import {
     changeAvatar,
     getUserInfo,
     getUserStatus,
+    saveProfile,
     updateUserStatus
 } from "../../Redux/profile-reducer";
 import {withAuthRedirect} from "../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
-    getIdSelector,
+    getErrorInfoSelector,
+    getIdSelector, getIsErrorSelector,
     getIsUpdateSelector,
     getProfileSelector,
     getStatusSelector
 } from "../../Redux/users-selector";
 
 
-function ProfileContainer(props) {
+const ProfileContainer = (props) => {
     let userId = props.match.params.userId;
     if (!userId) {
         userId = props.id;
@@ -37,13 +39,15 @@ let mapStateToProps = (state) => ({
     profile: getProfileSelector(state),
     status: getStatusSelector(state),
     id: getIdSelector(state),
-    isUpdate: getIsUpdateSelector(state)
+    isUpdate: getIsUpdateSelector(state),
+    isError: getIsErrorSelector(state),
+    errorInfo: getErrorInfoSelector(state)
 })
 
 export default compose(
     connect(
         mapStateToProps,
-        {getUserInfo, getUserStatus, updateUserStatus, changeAvatar}
+        {getUserInfo, getUserStatus, updateUserStatus, changeAvatar, saveProfile}
     ),
     withRouter,
     withAuthRedirect

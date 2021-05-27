@@ -8,6 +8,8 @@
           "avatar text"
 ;
     grid-gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .wallpaper {
@@ -17,12 +19,10 @@
 }
 
 .avatarWrapper {
-    margin-left: 10px;
     grid-area: avatar;
 }
 
 .avatar {
-    cursor: pointer;
 }
 
 .avatarInput {
@@ -39,6 +39,7 @@
     background-color: #ccc;
     padding: 5px;
     font-size: 12px;
+    text-align: center;
 }
 
 .otherAvatar {
@@ -60,3 +61,24 @@
 .contacts {}
 
 .status {}
+
+.linkWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.link {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.openForm {
+    width: auto;
+    height: auto;
+    border: 4px solid #ffffff;
+    border-radius: 0;
+    cursor: pointer;
+    background-color: #cccccc;
+    padding: 5px;
+}
