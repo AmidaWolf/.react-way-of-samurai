@@ -211,7 +211,6 @@ export const saveProfile = (profileInfo, id) => async (dispatch) => {
         dispatch(getUserInfo(id));
         dispatch(setIsError(false));
     } else {
-        debugger
         dispatch(setIsError(true));
         dispatch(setInfoError(response.data.messages));
     }

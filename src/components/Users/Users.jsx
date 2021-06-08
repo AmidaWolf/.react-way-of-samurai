@@ -25,6 +25,14 @@ import Paginator from "./Paginator/Paginator";
 
      return (
          <div className={style.users_wrapper}>
+             <Paginator
+                 users={users}
+                 page={page}
+                 pageSize={pageSize}
+                 totalItemsCount={totalUsersCount}
+
+                 getUsers={getUsers}
+             />
              <ul className={style.users}>
                  {UsersList}
              </ul>
