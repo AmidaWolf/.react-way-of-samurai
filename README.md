@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##Project deployed with gh-pages 3.1.0 to [https://amidawolf.github.io/.react-way-of-samurai/](https://amidawolf.github.io/.react-way-of-samurai/).
+
 ## Available Scripts
 
 In the project directory, you can run:

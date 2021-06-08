@@ -4,12 +4,12 @@ import style from './Posts.module.css';
 import WritePostContainer from "./WritePost/WritePostContainer";
 import PostsWallContainer from "./PostsWall/PostsWallContainer";
 
-const Posts = () => {
+const Posts = ({isOwner}) => {
     return (
         <div className={style.posts}>
             <h3 className={style.title}>My posts</h3>
-            <WritePostContainer/>
-            <PostsWallContainer/>
+            {isOwner ? <WritePostContainer/> : null}
+            <PostsWallContainer isOwner={isOwner}/>
         </div>
     )
 }

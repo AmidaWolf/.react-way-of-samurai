@@ -11,7 +11,12 @@ const Post = (props) => {
                 <p className={style.text}>{props.text}</p>
             </div>
             <p className={style.likes}>likes: {props.likesCount}</p>
-            <button className={style.button} onClick={()=>{props.delete(props.id)}}>Delete post</button>
+            {props.isOwner ?
+                <button
+                    className={style.button}
+                    onClick={()=>{props.delete(props.id)}}>Delete post</button> : null
+            }
+
         </li>
     )
 }

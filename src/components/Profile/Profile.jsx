@@ -23,7 +23,7 @@ const Profile = React.memo (({profile, status,
                 isError={isError}
                 errorInfo={errorInfo}
             />
-            <Posts />
+            <Posts isOwner={isOwner}/>
         </div>
     )
 })

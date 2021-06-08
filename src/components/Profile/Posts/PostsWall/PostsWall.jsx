@@ -11,6 +11,7 @@ const PostsWall = (props) => {
         likesCount={el.likes}
         key={el.id}
         id={el.id}
+        isOwner={props.isOwner}
         delete={props.deletePostActionCreator}/>
 })
 

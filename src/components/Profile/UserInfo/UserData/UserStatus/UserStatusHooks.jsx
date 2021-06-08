@@ -31,7 +31,7 @@ const UserStatusHooks = (props) => {
                     <div>
                         <span className={props.isOwner ? style.statusText : style.otherStatusText}
                             onClick={props.isOwner ? activateEditMode : null}>
-                            {!props.status ? 'Write u\'r status' : props.status}
+                            {!props.status && props.isOwner ? 'Write u\'r status' : props.status}
                         </span>
                     </div> :
                     <div>
