@@ -1,4 +1,4 @@
-import {authMe, getUser, loginMe, logoutMe} from "../api/api";
+import {authMe, getCaptcha, getUser, loginMe, logoutMe} from "../api/api";
 
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
@@ -6,6 +6,8 @@ const SET_USER_PHOTO = 'auth/SET_USER_PHOTO';
 const SET_AUTH_ERROR = 'auth/SET_AUTH_ERROR';
 const SET_LOGIN_ERROR = 'auth/SET_LOGIN_ERROR';
 const SET_LOGOUT_ERROR = 'auth/SET_LOGOUT_ERROR';
+const SET_CAPTCHA_URL = 'auth/SET_CAPTCHA_URL';
+
 
 let initialState = {
     id: null,
@@ -15,7 +17,8 @@ let initialState = {
     userPhoto: null,
     errorLogin: null,
     errorAuth: null,
-    errorLogout: null
+    errorLogout: null,
+    captchaUrl: null
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -44,6 +47,11 @@ export const authReducer = (state = initialState, action) => {
             return  {
                 ...state,
                 errorLogout: action.errorLogout
+            }
+        case SET_CAPTCHA_URL:
+            return  {
+                ...state,
+                captchaUrl: action.captchaUrl
             }
 
         default:
@@ -88,6 +96,13 @@ export const setLogoutError = (errorLogout) => {
     }
 }
 
+export const setCaptchaUrl = (captchaUrl) => {
+    return {
+        type: SET_CAPTCHA_URL,
+        captchaUrl
+    }
+}
+
 export const getAuthUserData = () => async (dispatch) => {
     dispatch(setAuthError(null));
     let response = await authMe();
@@ -108,6 +123,9 @@ export const setUserLogin = (data) => async (dispatch) => {
     if (response.resultCode === 0) {
         dispatch(getAuthUserData())
     } else {
+        if (response.resultCode === 10){
+            dispatch(getCaptchaUrl());
+        }
         dispatch(setLoginError(response.messages));
     }
 }
@@ -120,4 +138,10 @@ export const setUserLogout = () => async (dispatch) => {
     } else {
         dispatch(setLogoutError(response.messages));
     }
+}
+
+export const getCaptchaUrl = () => async (dispatch) => {
+    dispatch(setCaptchaUrl(null));
+    let response = await getCaptcha();
+    dispatch(setCaptchaUrl(response.data.url));
 }

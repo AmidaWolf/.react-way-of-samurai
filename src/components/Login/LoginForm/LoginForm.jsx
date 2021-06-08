@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import style from "../Login.module.css";
 
 
-export const LoginForm = ({setUserLogin, errorLogin}) => {
+export const LoginForm = ({setUserLogin, errorLogin, captchaUrl}) => {
     const validation = Yup.object({
         email: Yup
             .string()
@@ -26,7 +26,7 @@ export const LoginForm = ({setUserLogin, errorLogin}) => {
             <h1>Login</h1>
 
             <Formik
-                initialValues={{email: '', password: ''}}
+                initialValues={{email: '', password: '', captcha: ''}}
                 validationSchema={validation}
                 onSubmit={submit}
             >
@@ -52,14 +52,19 @@ export const LoginForm = ({setUserLogin, errorLogin}) => {
                                 name={'rememberMe'}
                             />Remember me
                         </label>
-                        <label>
-                            <Field
-                                type={'checkbox'}
-                                name={'captcha'}
-                                checked={true}
-                            />Captcha
-                        </label>
-                        <button type="submit" disabled={isSubmitting}>
+                        {
+                            captchaUrl ?
+                                <label className={style.captcha_label}>
+                                    <img src={captchaUrl} alt={'captcha'} width={120} height={50} />
+                                    Symbols from image
+                                    <Field
+                                        type={'textarea'}
+                                        name={'captcha'}
+                                    />
+                                </label> :
+                                null
+                        }
+                        <button className={style.login_button} type="submit" disabled={isSubmitting}>
                             Login
                         </button>
                         {

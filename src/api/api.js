@@ -47,27 +47,27 @@ export const authMe = () => {
 
 export const getStatus = (userId) => {
     return (
-        instance.get('/profile/status/' + userId)
+        instance.get('profile/status/' + userId)
             .then(response => response.data)
     )
 }
 
 export const updateStatus = (text) => {
     return (
-        instance.put('/profile/status', {status: text})
+        instance.put('profile/status', {status: text})
     )
 }
 
 export const loginMe = (data) => {
     return (
-        instance.post('/auth/login', {...data})
+        instance.post('auth/login', {...data})
             .then(response => response.data)
     )
 }
 
 export const logoutMe = () => {
     return (
-        instance.delete('/auth/login')
+        instance.delete('auth/login')
             .then(response => response.data)
     )
 }
@@ -76,13 +76,19 @@ export const uploadAvatar = (image) => {
     let formData = new FormData();
     formData.append('image', image)
     return (
-        instance.put('/profile/photo', formData)
+        instance.put('profile/photo', formData)
     )
 }
 
 export const uploadProfileInfo = (profileInfo) => {
     return (
-        instance.put('/profile', profileInfo)
+        instance.put('profile', profileInfo)
+    )
+}
+
+export const getCaptcha = () => {
+    return (
+        instance.get('security/get-captcha-url')
     )
 }
 

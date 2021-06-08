@@ -23,7 +23,7 @@ const Auth = ({isAuth, login, photoURL, setUserLogout}) => {
                         </div>
                     </NavLink>
                      :
-                    <NavLink className={style.link} to={'/login'}>Login</NavLink>
+                    <NavLink className={style.link_login} to={'/login'}>Login</NavLink>
             }
         </div>
     )
