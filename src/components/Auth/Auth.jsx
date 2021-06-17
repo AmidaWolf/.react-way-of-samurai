@@ -18,7 +18,11 @@ const Auth = ({isAuth, login, photoURL, setUserLogout}) => {
                                      photoURL != null
                                          ? photoURL :
                                          avatar
-                                 } alt="logged user"/>
+                                 }
+                                 alt="logged user"
+                                 width={60}
+                                 height={60}
+                            />
                             <button className={style.logout} onClick={setUserLogout} type={'button'}>Logout</button>
                         </div>
                     </NavLink>

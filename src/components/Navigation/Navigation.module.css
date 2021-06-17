@@ -28,3 +28,30 @@
 .activeLink {
     font-style: italic;
 }
+
+@media (max-width: 767.98px) {
+    .nav {
+        align-items: center;
+    }
+
+    .menu {
+        margin-bottom: 0;
+
+        display: flex;
+    }
+
+    .item {
+        padding: 0 5px;
+    }
+}
+
+/*480-575.98*/
+@media (max-width: 575.98px) {
+    .menu {
+        flex-direction: column;
+    }
+
+    .item {
+        padding: 5px 5px;
+    }
+}

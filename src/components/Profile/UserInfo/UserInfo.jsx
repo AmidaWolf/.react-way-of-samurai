@@ -41,6 +41,7 @@ const UserInfo = ({profile, status,
                             ? profile.photos.large : avatar
                     }
                     alt="avatar"
+                    width={300} height={300}
                 />
                 {
                     isOwner ?

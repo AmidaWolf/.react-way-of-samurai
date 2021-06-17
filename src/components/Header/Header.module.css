@@ -2,17 +2,22 @@
     grid-area: header;
     display: grid;
     grid-template-columns: 1fr 13fr 1fr;
+    grid-template-areas:
+        "logo title auth"
+;
     grid-gap: 10px;
 
     background-color: darkgray;
 }
 
 .logo {
+    grid-area: logo;
     height: 60px;
     width: 60px;
 }
 
-.title  {
+.title {
+    grid-area: title;
     margin: auto auto;
     padding: 0;
 }
@@ -22,4 +27,14 @@
     text-decoration: none;
     /*text-transform: uppercase;*/
     color: black;
+}
+
+/*480-575.98*/
+@media (max-width: 575.98px) {
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
 }

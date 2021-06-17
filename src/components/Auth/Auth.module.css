@@ -4,6 +4,7 @@
 }
 
 .auth_wrapper {
+    grid-area: auth;
     display: flex;
     align-items: center;
 }

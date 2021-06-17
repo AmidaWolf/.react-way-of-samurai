@@ -9,7 +9,7 @@ import {NavLink} from "react-router-dom";
 const Header = () => {
     return(
         <header className={style.header}>
-            <img className={style.logo} src={logo} alt="logo"/>
+            <img className={style.logo} src={logo} alt="logo" width={60} height={60}/>
             <h1 className={style.title}><NavLink to='/'>MonoChrome</NavLink></h1>
             <AuthContainer />
         </header>

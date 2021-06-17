@@ -82,3 +82,22 @@
     background-color: #cccccc;
     padding: 5px;
 }
+
+/*992-1199.98*/
+@media (max-width: 1199.98px) {
+    .avatar, .otherAvatar {
+        width: 200px;
+        height: 200px;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+}

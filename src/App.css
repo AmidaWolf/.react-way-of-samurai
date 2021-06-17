@@ -20,3 +20,23 @@
   background-color: dimgray;
 }
 
+/*576-767.98*/
+@media (max-width: 767.98px) {
+  .wrapper {
+    grid-template-rows: 60px min-content auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+          "header"
+          "navigation"
+          "cWrapper"
+  ;
+  }
+}
+
+/*480-575.98*/
+@media (max-width: 575.98px) {
+  .wrapper {
+    grid-template-rows: min-content min-content auto;
+  }
+}
+

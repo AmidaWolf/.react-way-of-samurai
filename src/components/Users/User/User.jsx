@@ -17,7 +17,10 @@ const User = ({id, photoUrl, followInProgress, followed, toggleFollowUser, name,
                                 photoUrl !== null
                                     ? photoUrl : avatar
                             }
-                            alt="avatar"/>
+                            alt="avatar"
+                            width={120}
+                            height={120}
+                        />
                     </NavLink>
                     <div>
                         {
